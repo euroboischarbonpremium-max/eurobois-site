@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commande - Eurobois & Charbon</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1a3a2a',
+                        'primary-dark': '#0f2418',
+                        'accent': '#e85d04',
+                        'accent-hover': '#d35400',
+                        'orange-btn': '#f97316',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+
+    <!-- Header simple -->
+    <header class="bg-white shadow-md">
+        <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="images/logo.png" alt="Eurobois & Charbon" class="h-14 w-auto">
+            </a>
+            <div class="flex items-center gap-4">
+                <div class="text-sm text-gray-500 hidden sm:block" data-i18n="checkout.secureNote">Secure order <i class="fas fa-lock text-green-500 ml-1"></i></div>
+                <div class="relative lang-switcher">
+                    <button type="button" onclick="toggleLangMenu()" class="flex items-center gap-1.5 cursor-pointer bg-transparent border-0 text-gray-600 hover:text-accent transition">
+                        <img src="https://flagcdn.com/16x12/lt.png" alt="Kalba" class="w-4 h-3 lang-flag-current">
+                        <span class="lang-label-current text-sm font-medium">LT</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden w-44 z-[100] border border-gray-100" style="min-width:10rem;">
+                        <button type="button" onclick="setLanguage('de')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/de.png" class="w-4 h-3" alt="DE"> Deutsch
+                        </button>
+                        <button type="button" onclick="setLanguage('en')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/gb.png" class="w-4 h-3" alt="EN"> English
+                        </button>
+                        <button type="button" onclick="setLanguage('lt')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/lt.png" class="w-4 h-3" alt="LT"> Lietuvių
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Steps -->
+    <div class="bg-white border-b">
+        <div class="max-w-5xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-center gap-4 text-sm">
+                <div class="flex items-center gap-2 text-accent font-semibold">
+                    <span class="w-7 h-7 bg-accent text-white rounded-full flex items-center justify-center text-xs">1</span>
+                    <span data-i18n="checkout.step1">Panier</span>
+                </div>
+                <div class="w-12 h-px bg-accent"></div>
+                <div class="flex items-center gap-2 text-accent font-semibold">
+                    <span class="w-7 h-7 bg-accent text-white rounded-full flex items-center justify-center text-xs">2</span>
+                    <span data-i18n="checkout.step2">Livraison</span>
+                </div>
+                <div class="w-12 h-px bg-gray-300"></div>
+                <div class="flex items-center gap-2 text-gray-400">
+                    <span class="w-7 h-7 bg-gray-200 rounded-full flex items-center justify-center text-xs">3</span>
+                    <span data-i18n="checkout.step3">Confirmation</span>
+                </div>
+                <div class="w-12 h-px bg-gray-300"></div>
+                <div class="flex items-center gap-2 text-gray-400">
+                    <span class="w-7 h-7 bg-gray-200 rounded-full flex items-center justify-center text-xs">4</span>
+                    <span data-i18n="checkout.step4">Confirmation</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-4 py-10">
+        <div class="grid lg:grid-cols-5 gap-8">
+            <!-- Form -->
+            <div class="lg:col-span-3 space-y-6">
+                <!-- Adresse -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="font-bold text-lg mb-4" data-i18n="checkout.deliveryInfo">Informations de livraison</h2>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1" data-i18n="checkout.lastName">Nom *</label>
+                            <input id="f-last" type="text" class="w-full border rounded-lg px-3 py-2.5 focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1" data-i18n="checkout.firstName">Prénom *</label>
+                            <input id="f-first" type="text" class="w-full border rounded-lg px-3 py-2.5 focus:outline-none focus:border-accent">
+                        </div>
+                        <div class="sm:col-span-2">
+                        <label class="block text-sm font-medium mb-1" data-i18n="checkout.email">Email *</label>
+                        <input id="f-email" type="email" class="w-full border rounded-lg px-3 py-2.5 focus:outline-none focus:border-accent">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-sm font-medium mb-1" data-i18n="checkout.phone">Téléphone *</label>
+                        <input id="f-phone" type="tel" class="w-full border rounded-lg px-3 py-2.5 focus:outline-none focus:border-accent">
+                    </div>
+                    <div class="sm:col-span-2">
+                            <label class="block text-sm font-medium mb-1" data-i18n="checkout.address">Adresse *</label>
+                            <input id="f-address" type="text" class="w-full border rounded-lg px-3 py-2.5 focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1" data-i18n="checkout.postal">Code postal *</label>
+                            <input id="f-postal" type="text" class="w-full border rounded-lg px-3 py-2.5 focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1" data-i18n="checkout.city">Ville *</label>
+                            <input id="f-city" type="text" class="w-full border rounded-lg px-3 py-2.5 focus:outline-none focus:border-accent">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-sm font-medium mb-1" data-i18n="checkout.country">Pays *</label>
+                            <select class="w-full border rounded-lg px-3 py-2.5 focus:outline-none focus:border-accent">
+                                <option data-i18n="country.france">France</option>
+                                <option data-i18n="country.belgium">Belgique</option>
+                                <option data-i18n="country.germany">Allemagne</option>
+                                <option data-i18n="country.luxembourg">Luxembourg</option>
+                                <option data-i18n="country.switzerland">Suisse</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mode de livraison -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="font-bold text-lg mb-4" data-i18n="checkout.shippingMode">Mode de livraison</h2>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-4 p-4 border rounded-lg cursor-pointer hover:border-accent has-[:checked]:border-accent has-[:checked]:bg-orange-50">
+                            <input type="radio" name="shipping" checked class="accent-orange-500">
+                            <div class="flex-1">
+                                <div class="font-medium" data-i18n="checkout.homeDelivery">Livraison à domicile</div>
+                                <div class="text-sm text-gray-500" data-i18n="checkout.homeDays">2 à 5 jours ouvrés</div>
+                            </div>
+                            <div class="font-semibold text-green-600" data-i18n="cart.free">Gratuit</div>
+                        </label>
+                        <label class="flex items-center gap-4 p-4 border rounded-lg cursor-pointer hover:border-accent has-[:checked]:border-accent has-[:checked]:bg-orange-50">
+                            <input type="radio" name="shipping" class="accent-orange-500">
+                            <div class="flex-1">
+                                <div class="font-medium" data-i18n="checkout.pickupPoint">Point relais</div>
+                                <div class="text-sm text-gray-500" data-i18n="checkout.pickupDays">2 à 4 jours ouvrés</div>
+                            </div>
+                            <div class="font-semibold text-green-600" data-i18n="cart.free">Gratuit</div>
+                        </label>
+                        <label class="flex items-center gap-4 p-4 border rounded-lg cursor-pointer hover:border-accent has-[:checked]:border-accent has-[:checked]:bg-orange-50">
+                            <input type="radio" name="shipping" class="accent-orange-500">
+                            <div class="flex-1">
+                                <div class="font-medium" data-i18n="checkout.storePickup">Retrait en magasin</div>
+                                <div class="text-sm text-gray-500" data-i18n="checkout.storeHours">Disponible sous 24h</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Paiement (manuel par virement) -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="font-bold text-lg mb-4" data-i18n="checkout.paymentMode">Payment method</h2>
+                    <div class="p-4 border-2 border-accent bg-orange-50 rounded-lg">
+                        <div class="font-medium mb-1" data-i18n="checkout.bankTransfer">Bank transfer</div>
+                        <p class="text-sm text-gray-600" data-i18n="checkout.bankTransferInfo">
+                            After validating your order, we will send you our bank details by email so you can complete the payment by transfer.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center">
+                    <a href="panier.html" class="text-accent hover:underline"><i class="fas fa-arrow-left mr-1"></i> <span data-i18n="checkout.backCart">Back to cart</span></a>
+                    <button id="place-order-btn" type="button" onclick="placeOrder()" class="bg-orange-btn hover:bg-accent-hover text-white font-semibold px-8 py-3.5 rounded-lg transition">
+                        <span data-i18n="checkout.placeOrder">Validate my order →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Order summary -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-md p-6 sticky top-6">
+                    <h2 class="font-bold text-lg mb-4" data-i18n="checkout.yourOrder">Votre commande</h2>
+                    <div id="order-summary" class="space-y-3 mb-4 text-sm">
+                        <!-- JS -->
+                    </div>
+                    <div class="border-t pt-4 space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span data-i18n="cart.subtotal">Sous-total</span>
+                            <span id="sum-subtotal">0,00 €</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span data-i18n="checkout.shipping">Livraison</span>
+                            <span id="sum-shipping" class="text-green-600" data-i18n="cart.free">Gratuit</span>
+                        </div>
+                        <div class="flex justify-between font-bold text-lg pt-2">
+                            <span data-i18n="cart.total">Total</span>
+                            <span id="sum-total" class="text-primary">0,00 €</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/cart.js"></script>
+    <script src="js/forms.js"></script>
+    <script src="js/i18n.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = getCart();
+            const container = document.getElementById('order-summary');
+            let subtotal = 0;
+            let html = '';
+            cart.forEach(item => {
+                const total = item.price * item.qty;
+                subtotal += total;
+                html += `
+                    <div class="flex gap-3">
+                        <img src="${item.image}" class="w-14 h-14 object-cover rounded">
+                        <div class="flex-1">
+                            <div class="font-medium">${item.name}</div>
+                            <div class="text-gray-500">${typeof t==='function'?t('checkout.qty'):'Qté :'} ${item.qty}</div>
+                        </div>
+                        <div class="font-medium">${total.toFixed(2).replace('.', ',')} €</div>
+                    </div>`;
+            });
+            container.innerHTML = html || '<p class="text-gray-500" data-i18n="checkout.emptyCart">Panier vide</p>';
+            const shipping = 0;
+            document.getElementById('sum-subtotal').textContent = subtotal.toFixed(2).replace('.', ',') + ' €';
+            document.getElementById('sum-total').textContent = (subtotal + shipping).toFixed(2).replace('.', ',') + ' €';
+        });
+
+    </script>
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/37066102523" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp" class="fixed bottom-5 right-5 z-[70] bg-[#25D366] hover:bg-[#1ebe57] text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+</body>
+</html>

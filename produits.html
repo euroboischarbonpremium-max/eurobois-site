@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bois de chauffage - Eurobois & Charbon</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1a3a2a',
+                        'primary-dark': '#0f2418',
+                        'accent': '#e85d04',
+                        'accent-hover': '#d35400',
+                        'orange-btn': '#f97316',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .product-card { min-width: 0; width: 100%; }
+        .product-card img { width: 100%; height: 12rem; object-fit: cover; }
+        .product-card:hover { transform: translateY(-4px); transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="bg-primary-dark text-white text-sm py-2 px-4 relative z-[60]">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center gap-4">
+                <span data-i18n="topbar.delivery"><i class="fas fa-truck mr-1"></i> Livraison dans toute l'Europe</span>
+                <span class="hidden sm:inline" data-i18n="topbar.payment"><i class="fas fa-shield-alt mr-1"></i> Paiement sécurisé</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span><i class="fas fa-phone-alt mr-1"></i> <span data-i18n="topbar.service">Service client</span> : +370 661 02523</span>
+                <a href="https://wa.me/37066102523" target="_blank" rel="noopener" aria-label="Contactez-nous sur WhatsApp" class="flex items-center gap-1 hover:text-[#25D366] transition-colors"><i class="fab fa-whatsapp text-base"></i> <span class="hidden sm:inline">WhatsApp</span></a>
+            </div>
+        </div>
+    </div>
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="images/logo.png" alt="Eurobois & Charbon" class="h-14 w-auto">
+            </a>
+            <nav class="hidden lg:flex items-center gap-5 text-sm font-medium">
+                <a href="index.html" class="hover:text-accent transition" data-i18n="nav.home">Accueil</a>
+                <a href="retours.html" class="hover:text-accent transition" data-i18n="nav.returnRefund">Retour et Remboursement</a>
+                <a href="index.html#livraison" class="hover:text-accent transition" data-i18n="nav.delivery">Livraison</a>
+                <a href="a-propos.html" class="hover:text-accent transition" data-i18n="nav.contact">Contact</a>
+                <div class="relative menus-dropdown">
+                    <button type="button" onclick="toggleMenusDropdown()" class="flex items-center gap-1.5 hover:text-accent transition bg-transparent border-0 cursor-pointer text-sm font-medium text-gray-800">
+                        <i class="fas fa-bars"></i>
+                        <span data-i18n="nav.menus">Menus</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="menus-panel hidden absolute left-0 top-full mt-2 bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden w-56 z-[100] border border-gray-100">
+                        <a href="produits.html?cat=firewood" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.firewood">Bois de chauffage</a>
+                        <a href="produits.html?cat=charcoal" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.charcoal">Charbon de bois</a>
+                        <a href="produits.html?cat=logs" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.logs">Bûches densifiées</a>
+                        <a href="produits.html?cat=pellets" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.pellets">Granulés</a>
+                        <a href="produits.html" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100 border-t" data-i18n="nav.offers">Nos offres</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="panier.html" class="relative text-gray-600 hover:text-accent">
+                <i class="fas fa-shopping-cart text-lg"></i>
+                <span id="cart-count" class="absolute -top-2 -right-2 bg-accent text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+            </a>
+                <div class="relative lang-switcher">
+                    <button type="button" onclick="toggleLangMenu()" class="flex items-center gap-1.5 cursor-pointer bg-transparent border-0 text-gray-600 hover:text-accent transition">
+                        <img src="https://flagcdn.com/16x12/lt.png" alt="Kalba" class="w-4 h-3 lang-flag-current">
+                        <span class="lang-label-current text-sm font-medium">LT</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden w-44 z-[100] border border-gray-100" style="min-width:10rem;">
+                        <button type="button" onclick="setLanguage('de')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/de.png" class="w-4 h-3" alt="DE"> Deutsch
+                        </button>
+                        <button type="button" onclick="setLanguage('en')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/gb.png" class="w-4 h-3" alt="EN"> English
+                        </button>
+                        <button type="button" onclick="setLanguage('lt')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/lt.png" class="w-4 h-3" alt="LT"> Lietuvių
+                        </button>
+                    </div>
+                </div>
+            <button class="lg:hidden text-gray-600" id="mobile-menu-btn" type="button">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t px-4 py-3">
+            <nav class="flex flex-col gap-1 text-sm font-medium">
+                <a href="index.html" class="py-2 hover:text-accent" data-i18n="nav.home">Accueil</a>
+                <a href="retours.html" class="py-2 hover:text-accent" data-i18n="nav.returnRefund">Retour et Remboursement</a>
+                <a href="index.html#livraison" class="py-2 hover:text-accent" data-i18n="nav.delivery">Livraison</a>
+                <a href="a-propos.html" class="py-2 hover:text-accent" data-i18n="nav.contact">Contact</a>
+                <div class="border-t my-2 pt-2">
+                    <p class="text-xs text-gray-400 uppercase tracking-wide mb-1 px-0" data-i18n="nav.menus">Menus</p>
+                    <a href="produits.html?cat=firewood" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.firewood">Bois de chauffage</a>
+                    <a href="produits.html?cat=charcoal" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.charcoal">Charbon de bois</a>
+                    <a href="produits.html?cat=logs" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.logs">Bûches densifiées</a>
+                    <a href="produits.html?cat=pellets" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.pellets">Granulés</a>
+                    <a href="produits.html" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.offers">Nos offres</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="relative h-48 md:h-64">
+        <img src="images/banniere-produits.jpg" alt="Bois de chauffage" class="w-full h-full object-cover" style="object-position:center 40%;">
+        <div class="absolute inset-0 bg-black/50 flex items-center">
+            <div class="max-w-7xl mx-auto px-4 text-white">
+                <h1 id="cat-title" class="text-3xl md:text-4xl font-bold" data-i18n="firewood.title">Bois de chauffage</h1>
+                <p id="cat-subtitle" class="text-lg text-gray-200 mt-1" data-i18n="firewood.subtitle">Des bûches de qualité, sèches et prêtes à l'emploi.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-10">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <aside class="lg:w-64 flex-shrink-0">
+                <div class="bg-white rounded-xl shadow-md p-5 sticky top-24">
+                    <h3 class="font-bold text-lg mb-4" data-i18n="products.filterBy">Filtrer par</h3>
+                    <div class="mb-5">
+                        <h4 class="font-semibold text-sm mb-2" data-i18n="products.price">Prix</h4>
+                        <input type="range" min="0" max="400" value="400" class="w-full accent-orange-500">
+                        <div class="flex justify-between text-xs text-gray-500 mt-1"><span>0 €</span><span>400 €</span></div>
+                    </div>
+                    <div class="mb-5">
+                        <h4 class="font-semibold text-sm mb-2" data-i18n="products.woodType">Type de bois</h4>
+                        <div class="space-y-2 text-sm">
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500" checked> <span data-i18n="products.oak">Chêne</span></label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> <span data-i18n="products.beech">Hêtre</span></label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> <span data-i18n="products.hornbeam">Charme</span></label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> <span data-i18n="products.ash">Frêne</span></label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> <span data-i18n="products.mixed">Mixte</span></label>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <h4 class="font-semibold text-sm mb-2" data-i18n="products.logLength">Longueur des bûches</h4>
+                        <div class="space-y-2 text-sm">
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> 25 cm</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> 33 cm</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> 40 cm</label>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <h4 class="font-semibold text-sm mb-2" data-i18n="products.volume">Volume</h4>
+                        <div class="space-y-2 text-sm">
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> 1 m³</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> 2 m³</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> 3 m³</label>
+                        </div>
+                    </div>
+                    <button class="w-full bg-orange-btn text-white py-2.5 rounded-lg text-sm font-medium hover:bg-accent-hover transition" data-i18n="products.resetFilters">Réinitialiser les filtres</button>
+                </div>
+            </aside>
+
+            <div class="flex-1">
+                <div class="flex justify-between items-center mb-6">
+                    <p class="text-sm text-gray-600"><span id="product-count">16</span> <span data-i18n="products.found">produits trouvés</span></p>
+                    <select class="border rounded-lg px-3 py-2 text-sm"><option data-i18n="products.sort">Trier par : Pertinence</option></select>
+                </div>
+
+                                                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div data-cat="firewood" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <a href="produit.html?id=bois-chene-1m3" class="block"><img src="images/bois-chene-1m3.jpg" alt="Bois de chêne sec 1 m³" class="w-full h-48 object-cover"></a>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=bois-chene-1m3" class="hover:text-accent transition" data-i18n="prod.oak1.title">Bois de chêne sec – 1 m³</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.oak1.desc">Bûches de 25 cm / 33 cm / 50 cm</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(124)</span></div>
+                            <div class="text-xl font-bold text-primary mb-3">129,00 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
+                            <button onclick="addToCart('bois-chene-1m3', 'Bois de chêne sec – 1 m³', 129.00, 'images/bois-chene-1m3.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+<div data-cat="firewood" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <a href="produit.html?id=bois-hetre-2m3" class="block"><img src="images/bois-hetre-2m3.jpg" alt="Bois de hêtre sec 2 m³" class="w-full h-48 object-cover"></a>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=bois-hetre-2m3" class="hover:text-accent transition" data-i18n="prod.beech2.title">Bois de hêtre sec – 2 m³</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.beech2.desc">Bûches 25 cm / 33 cm / 40 cm</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(98)</span></div>
+                            <div class="text-xl font-bold text-primary mb-3">219,00 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
+                            <button onclick="addToCart('bois-hetre-2m3', 'Bois de hêtre sec – 2 m³', 219.00, 'images/bois-hetre-2m3.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+<div data-cat="firewood" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <a href="produit.html?id=bois-charme-2m3" class="block"><img src="images/bois-charme-2m3.jpg" alt="Bois de charme sec 2 m³" class="w-full h-48 object-cover"></a>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=bois-charme-2m3" class="hover:text-accent transition" data-i18n="prod.hornbeam2.title">Bois de charme sec – 2 m³</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.hornbeam2.desc">Bûches 25 cm / 33 cm / 40 cm</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(76)</span></div>
+                            <div class="text-xl font-bold text-primary mb-3">199,00 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
+                            <button onclick="addToCart('bois-charme-2m3', 'Bois de charme sec – 2 m³', 199.00, 'images/bois-charme-2m3.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+<div data-cat="firewood" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <div class="relative">
+                            <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded" data-i18n="products.bestseller">Meilleure vente</span>
+                            <a href="produit.html?id=bois-chene-2m3" class="block"><img src="images/bois-chene-2m3.jpg" alt="Bois de chêne sec 2 m³" class="w-full h-48 object-cover"></a>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=bois-chene-2m3" class="hover:text-accent transition" data-i18n="prod.oak2.title">Bois de chêne sec – 2 m³</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.oak2.desc">Bûches 25 cm / 33 cm / 40 cm (au choix)</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(112)</span></div>
+                            <div class="text-xl font-bold text-primary mb-3">248,00 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
+                            <button onclick="addToCart('bois-chene-2m3', 'Bois de chêne sec – 2 m³', 248.00, 'images/bois-chene-2m3.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+<div data-cat="firewood" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <a href="produit.html?id=bois-bouleau-05" class="block"><img src="images/bois-bouleau.jpg" alt="Bois de bouleau sec - 0,5 m³" class="w-full h-48 object-cover"></a>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=bois-bouleau-05" class="hover:text-accent transition" data-i18n="prod.birch05.title">Bois de bouleau sec - 0,5 m³</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.birch05.desc">Bûches 25 cm – bois empilé</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(55)</span></div>
+                            <div class="text-xl font-bold text-primary mb-3">132,99 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
+                            <button onclick="addToCart('bois-bouleau-05', 'Bois de bouleau sec - 0,5 m³', 132.99, 'images/bois-bouleau.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+<div data-cat="firewood" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <a href="produit.html?id=bois-bouleau-1m3" class="block"><img src="images/bois-bouleau.jpg" alt="Bois de bouleau sec - 1 m³" class="w-full h-48 object-cover"></a>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=bois-bouleau-1m3" class="hover:text-accent transition" data-i18n="prod.birch1.title">Bois de bouleau sec - 1 m³</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.birch1.desc">Bûches 25 cm – bois empilé</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(72)</span></div>
+                            <div class="text-xl font-bold text-primary mb-3">220,00 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
+                            <button onclick="addToCart('bois-bouleau-1m3', 'Bois de bouleau sec - 1 m³', 220.0, 'images/bois-bouleau.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+<div data-cat="charcoal" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <div class="relative">
+                            <a href="produit.html?id=charbon-20kg" class="block"><img src="images/charbon-bois-10kg.jpg" alt="Charbon de bois 20 kg" class="w-full h-48 object-cover"></a>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=charbon-20kg" class="hover:text-accent transition" data-i18n="prod.charcoal10.title">Charbon de bois - 20 kg</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.charcoal10.desc">100% bois naturel</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(98)</span></div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-xl font-bold text-primary">37,89 €</span>
+                                <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span>
+                            </div>
+                            <button onclick="addToCart('charbon-20kg', 'Charbon de bois - 20 kg', 37.89, 'images/charbon-bois-10kg.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+<div data-cat="pellets" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <a href="produit.html?id=granules-15kg" class="block"><img src="images/granules-bois-15kg.jpg" alt="Granulés de bois 15 kg" class="w-full h-48 object-cover"></a>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=granules-15kg" class="hover:text-accent transition" data-i18n="prod.pellets15.title">Granulés de bois - 15 kg</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.pellets15.desc">100% naturel</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(64)</span></div>
+                            <div class="text-xl font-bold text-primary mb-3">6,90 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
+                            <button onclick="addToCart('granules-15kg', 'Granulés de bois - 15 kg', 6.90, 'images/granules-bois-15kg.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+<div data-cat="pellets" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <a href="produit.html?id=granules-120kg" class="block"><img src="images/granules-bois-120kg.jpg" alt="Granulés de bois 120 kg" class="w-full h-48 object-cover"></a>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=granules-120kg" class="hover:text-accent transition" data-i18n="prod.pellets120.title">Granulés de bois - 120 kg</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.pellets120.desc">100% naturel – 8 sacs de 15 kg</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(48)</span></div>
+                            <div class="text-xl font-bold text-primary mb-3">37,90 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
+                            <button onclick="addToCart('granules-120kg', 'Granulés de bois - 120 kg', 37.90, 'images/granules-bois-120kg.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+<div data-cat="logs" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <a href="produit.html?id=buches-densifiees-10kg" class="block"><img src="images/buches-densifiees-10kg.jpg" alt="Bûches densifiées 10 kg" class="w-full h-48 object-cover"></a>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=buches-densifiees-10kg" class="hover:text-accent transition" data-i18n="prod.densified10.title">Bûches densifiées - 10 kg</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.densified10.desc">100% bois naturel, haute performance</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(76)</span></div>
+                            <div class="text-xl font-bold text-primary mb-3">7,90 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
+                            <button onclick="addToCart('buches-densifiees-10kg', 'Bûches densifiées - 10 kg', 7.90, 'images/buches-densifiees-10kg.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+<div data-cat="other" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <a href="produit.html?id=allume-feu-32" class="block"><img src="images/allume-feu-32cubes-new.jpg" alt="Allume-feu naturel 32 cubes" class="w-full h-48 object-cover"></a>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=allume-feu-32" class="hover:text-accent transition" data-i18n="prod.firestarter32.title">Allume-feu naturel - 32 cubes</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.firestarter32.desc">Bois et cire végétale – Allumage rapide et efficace</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(41)</span></div>
+                            <div class="text-xl font-bold text-primary mb-3">4,80 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
+                            <button onclick="addToCart('allume-feu-32', 'Allume-feu naturel - 32 cubes', 4.80, 'images/allume-feu-32cubes-new.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+<div data-cat="logs" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <div class="relative">
+                            <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded" data-i18n="products.bestseller">Meilleure vente</span>
+                            <a href="produit.html?id=briq-10kg" class="block"><img src="images/briquettes-bois.jpg" alt="Briquettes de bois - 10 kg" class="w-full h-48 object-cover"></a>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=briq-10kg" class="hover:text-accent transition" data-i18n="prod.briq10.title">Briquettes de bois - 10 kg</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.briq10.desc">1 pack – 100% bois naturel</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(28)</span></div>
+                            <div class="text-xl font-bold text-primary mb-3">7,00 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
+                            <button onclick="addToCart('briq-10kg', 'Briquettes de bois - 10 kg', 7.0, 'images/briquettes-bois.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+<div data-cat="logs" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <a href="produit.html?id=briq-240kg" class="block"><img src="images/briquettes-bois.jpg" alt="Briquettes de bois - ¼ palette 240 kg" class="w-full h-48 object-cover"></a>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=briq-240kg" class="hover:text-accent transition" data-i18n="prod.briq240.title">Briquettes de bois - ¼ palette 240 kg</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.briq240.desc">24 packs de 10 kg</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(45)</span></div>
+                            <div class="text-xl font-bold text-primary mb-3">149,00 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
+                            <button onclick="addToCart('briq-240kg', 'Briquettes de bois - ¼ palette 240 kg', 149.0, 'images/briquettes-bois.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+<div data-cat="logs" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <a href="produit.html?id=briq-480kg" class="block"><img src="images/briquettes-bois.jpg" alt="Briquettes de bois - ½ palette 480 kg" class="w-full h-48 object-cover"></a>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=briq-480kg" class="hover:text-accent transition" data-i18n="prod.briq480.title">Briquettes de bois - ½ palette 480 kg</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.briq480.desc">48 packs de 10 kg</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(52)</span></div>
+                            <div class="text-xl font-bold text-primary mb-3">289,89 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
+                            <button onclick="addToCart('briq-480kg', 'Briquettes de bois - ½ palette 480 kg', 289.89, 'images/briquettes-bois.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+<div data-cat="logs" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <a href="produit.html?id=briq-720kg" class="block"><img src="images/briquettes-bois.jpg" alt="Briquettes de bois - ¾ palette 720 kg" class="w-full h-48 object-cover"></a>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=briq-720kg" class="hover:text-accent transition" data-i18n="prod.briq720.title">Briquettes de bois - ¾ palette 720 kg</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.briq720.desc">72 packs de 10 kg</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(31)</span></div>
+                            <div class="text-xl font-bold text-primary mb-3">439,00 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
+                            <button onclick="addToCart('briq-720kg', 'Briquettes de bois - ¾ palette 720 kg', 439.0, 'images/briquettes-bois.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+<div data-cat="logs" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
+                        <a href="produit.html?id=briq-960kg" class="block"><img src="images/briquettes-bois.jpg" alt="Briquettes de bois - palette 960 kg" class="w-full h-48 object-cover"></a>
+                        <div class="p-4">
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=briq-960kg" class="hover:text-accent transition" data-i18n="prod.briq960.title">Briquettes de bois - palette 960 kg</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.briq960.desc">96 packs de 10 kg – palette complète</p>
+                            <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(67)</span></div>
+                            <div class="text-xl font-bold text-primary mb-3">519,00 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
+                            <button onclick="addToCart('briq-960kg', 'Briquettes de bois - palette 960 kg', 519.0, 'images/briquettes-bois.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-primary-dark text-white py-8 mt-10">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-gray-400">
+            <div class="flex flex-wrap justify-center gap-x-5 gap-y-2 mb-3"><a href="mailto:euroboischarbonpremium@gmail.com" class="hover:text-white"><i class="fas fa-envelope mr-1"></i>euroboischarbonpremium@gmail.com</a><a href="livraison.html" class="hover:text-white" data-i18n="footer.delivery">Conditions de livraison</a><a href="retours.html" class="hover:text-white" data-i18n="footer.returnsPolicy">Politique de retour et de remboursement</a><a href="confidentialite.html" class="hover:text-white" data-i18n="footer.privacy">Politique de confidentialité</a><a href="cookies.html" class="hover:text-white" data-i18n="footer.cookies">Politique de gestion des cookies</a></div>
+            <p data-i18n="footer.copyright">© 2025 Eurobois & Charbon. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="js/cart.js"></script>
+    <script src="js/i18n.js"></script>
+<script>
+        document.querySelectorAll('.qty-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const container = this.parentElement;
+                const valueEl = container.querySelector('.qty-value');
+                let val = parseInt(valueEl.textContent);
+                if (this.dataset.action === 'plus') val++;
+                else if (val > 1) val--;
+                valueEl.textContent = val;
+            });
+        });
+        var mm = document.getElementById('mobile-menu-btn');
+        if (mm) mm.addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+    </script>
+
+    <script>
+        (function () {
+            var cat = new URLSearchParams(location.search).get('cat');
+            var valid = ['firewood', 'charcoal', 'logs', 'pellets'];
+            if (valid.indexOf(cat) === -1) return;
+            var n = 0;
+            document.querySelectorAll('.product-card[data-cat]').forEach(function (c) {
+                if (c.getAttribute('data-cat') === cat) { n++; } else { c.style.display = 'none'; }
+            });
+            document.getElementById('product-count').textContent = n;
+            if (cat !== 'firewood') {
+                document.getElementById('cat-title').setAttribute('data-i18n', 'nav.' + cat);
+                document.getElementById('cat-subtitle').style.display = 'none';
+            }
+        })();
+    </script>
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/37066102523" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp" class="fixed bottom-5 right-5 z-[70] bg-[#25D366] hover:bg-[#1ebe57] text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+</body>
+</html>

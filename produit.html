@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charbon de bois - 10 kg - Eurobois & Charbon</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1a3a2a',
+                        'primary-dark': '#0f2418',
+                        'accent': '#e85d04',
+                        'accent-hover': '#d35400',
+                        'orange-btn': '#f97316',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Top bar -->
+    <div class="bg-primary-dark text-white text-sm py-2 px-4 relative z-[60]">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <span data-i18n="topbar.delivery"><i class="fas fa-truck mr-1"></i> Livraison dans toute l'Europe</span>
+            <div class="flex items-center gap-4">
+                <span><i class="fas fa-phone-alt mr-1"></i> +370 661 02523</span>
+                <a href="https://wa.me/37066102523" target="_blank" rel="noopener" aria-label="Contactez-nous sur WhatsApp" class="flex items-center gap-1 hover:text-[#25D366] transition-colors"><i class="fab fa-whatsapp text-base"></i> <span class="hidden sm:inline">WhatsApp</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="images/logo.png" alt="Eurobois & Charbon" class="h-14 w-auto">
+            </a>
+            <nav class="hidden lg:flex items-center gap-5 text-sm font-medium">
+                <a href="index.html" class="hover:text-accent transition" data-i18n="nav.home">Accueil</a>
+                <a href="retours.html" class="hover:text-accent transition" data-i18n="nav.returnRefund">Retour et Remboursement</a>
+                <a href="index.html#livraison" class="hover:text-accent transition" data-i18n="nav.delivery">Livraison</a>
+                <a href="a-propos.html" class="hover:text-accent transition" data-i18n="nav.contact">Contact</a>
+                <div class="relative menus-dropdown">
+                    <button type="button" onclick="toggleMenusDropdown()" class="flex items-center gap-1.5 hover:text-accent transition bg-transparent border-0 cursor-pointer text-sm font-medium text-gray-800">
+                        <i class="fas fa-bars"></i>
+                        <span data-i18n="nav.menus">Menus</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="menus-panel hidden absolute left-0 top-full mt-2 bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden w-56 z-[100] border border-gray-100">
+                        <a href="produits.html?cat=firewood" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.firewood">Bois de chauffage</a>
+                        <a href="produits.html?cat=charcoal" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.charcoal">Charbon de bois</a>
+                        <a href="produits.html?cat=logs" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.logs">Bûches densifiées</a>
+                        <a href="produits.html?cat=pellets" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.pellets">Granulés</a>
+                        <a href="produits.html" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100 border-t" data-i18n="nav.offers">Nos offres</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="panier.html" class="relative text-gray-600 hover:text-accent">
+                <i class="fas fa-shopping-cart text-lg"></i>
+                <span id="cart-count" class="absolute -top-2 -right-2 bg-accent text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+            </a>
+                <div class="relative lang-switcher">
+                    <button type="button" onclick="toggleLangMenu()" class="flex items-center gap-1.5 cursor-pointer bg-transparent border-0 text-gray-600 hover:text-accent transition">
+                        <img src="https://flagcdn.com/16x12/lt.png" alt="Kalba" class="w-4 h-3 lang-flag-current">
+                        <span class="lang-label-current text-sm font-medium">LT</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden w-44 z-[100] border border-gray-100" style="min-width:10rem;">
+                        <button type="button" onclick="setLanguage('de')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/de.png" class="w-4 h-3" alt="DE"> Deutsch
+                        </button>
+                        <button type="button" onclick="setLanguage('en')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/gb.png" class="w-4 h-3" alt="EN"> English
+                        </button>
+                        <button type="button" onclick="setLanguage('lt')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/lt.png" class="w-4 h-3" alt="LT"> Lietuvių
+                        </button>
+                    </div>
+                </div>
+            <button class="lg:hidden text-gray-600" id="mobile-menu-btn" type="button">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t px-4 py-3">
+            <nav class="flex flex-col gap-1 text-sm font-medium">
+                <a href="index.html" class="py-2 hover:text-accent" data-i18n="nav.home">Accueil</a>
+                <a href="retours.html" class="py-2 hover:text-accent" data-i18n="nav.returnRefund">Retour et Remboursement</a>
+                <a href="index.html#livraison" class="py-2 hover:text-accent" data-i18n="nav.delivery">Livraison</a>
+                <a href="a-propos.html" class="py-2 hover:text-accent" data-i18n="nav.contact">Contact</a>
+                <div class="border-t my-2 pt-2">
+                    <p class="text-xs text-gray-400 uppercase tracking-wide mb-1 px-0" data-i18n="nav.menus">Menus</p>
+                    <a href="produits.html?cat=firewood" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.firewood">Bois de chauffage</a>
+                    <a href="produits.html?cat=charcoal" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.charcoal">Charbon de bois</a>
+                    <a href="produits.html?cat=logs" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.logs">Bûches densifiées</a>
+                    <a href="produits.html?cat=pellets" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.pellets">Granulés</a>
+                    <a href="produits.html" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.offers">Nos offres</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 py-3 text-sm text-gray-500">
+            <a href="index.html" class="hover:text-accent" data-i18n="product.breadcrumbHome">Accueil</a> / 
+            <a id="bc-cat" href="produits.html?cat=charcoal" class="hover:text-accent" data-i18n="nav.charcoal">Charbon de bois</a> / 
+            <span id="bc-title" class="text-gray-800" data-i18n="prod.charcoal.title">Charbon de bois - 10 kg</span>
+        </div>
+    </div>
+
+    <!-- Product detail -->
+    <div class="max-w-7xl mx-auto px-4 py-10">
+        <div class="grid md:grid-cols-2 gap-10">
+            <!-- Image -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <img id="p-img" src="images/charbon-naturcoal-10kg.jpg" alt="Charbon de bois - 10 kg" class="w-full h-96 object-cover">
+            </div>
+
+            <!-- Info -->
+            <div>
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="text-yellow-400">★★★★★</div>
+                    <span class="text-sm text-gray-500">(<span id="p-reviews">98</span> <span data-i18n="product.reviews">avis</span>)</span>
+                </div>
+                <h1 id="p-title" class="text-3xl font-bold text-primary mb-2" data-i18n="prod.charcoal.title">Charbon de bois - 10 kg</h1>
+                <div class="flex items-center gap-3 mb-4">
+                    <span id="p-price" class="text-3xl font-bold text-primary">18,90 €</span>
+                    <span id="p-old" class="text-xl text-gray-400 line-through">25,90 €</span>
+                    <span id="p-promo" class="bg-red-500 text-white text-sm font-bold px-2 py-1 rounded" data-i18n="products.promo">Promo</span>
+                </div>
+                <p class="text-gray-600 mb-6">
+                    <span id="p-desc" data-i18n="prod.charcoal.long">100% bois naturel, sans additifs. Idéal pour barbecue, cheminée et cuisson au feu de bois. Haute performance et longue durée de combustion.</span>
+                </p>
+
+                <div class="flex flex-wrap gap-4 mb-6 text-sm">
+                    <span class="flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1.5 rounded-full">
+                        <i class="fas fa-check-circle"></i> <span data-i18n="product.highCombustion">Haute combustion</span>
+                    </span>
+                    <span class="flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1.5 rounded-full">
+                        <i class="fas fa-leaf"></i> <span data-i18n="product.noAdditives">Sans additifs</span>
+                    </span>
+                    <span class="flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1.5 rounded-full">
+                        <i class="fas fa-fire"></i> <span data-i18n="product.premium">Qualité premium</span>
+                    </span>
+                </div>
+
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="font-medium" data-i18n="product.qty">Quantité :</span>
+                    <div class="flex items-center gap-2">
+                        <button onclick="changeQty(-1)" class="border rounded w-10 h-10 flex items-center justify-center hover:bg-gray-100">-</button>
+                        <span id="product-qty" class="w-10 text-center font-semibold">1</span>
+                        <button onclick="changeQty(1)" class="border rounded w-10 h-10 flex items-center justify-center hover:bg-gray-100">+</button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3 mb-6">
+                    <button onclick="addCurrentToCart()"
+                            class="flex-1 bg-orange-btn hover:bg-accent-hover text-white font-semibold py-3.5 rounded-lg transition flex items-center justify-center gap-2">
+                        <i class="fas fa-cart-plus"></i> <span data-i18n="products.addToCart">Ajouter au panier</span>
+                    </button>
+                    <a href="panier.html" class="flex-1 bg-primary hover:bg-primary-dark text-white font-semibold py-3.5 rounded-lg transition flex items-center justify-center gap-2">
+                        <span data-i18n="product.buyNow">Acheter maintenant</span>
+                    </a>
+                </div>
+
+                <div class="border-t pt-4 text-sm text-gray-600 space-y-2">
+                    <p><i class="fas fa-check text-green-500 mr-2"></i> <span data-i18n="product.inStock">En stock - Livraison sous 2 à 4 jours</span></p>
+                    <p><i class="fas fa-truck text-accent mr-2"></i> <span data-i18n="product.freeShipping">Livraison gratuite dès 150 €</span></p>
+                    <p><i class="fas fa-undo text-accent mr-2"></i> <span data-i18n="product.returns">Retours sous 14 jours</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-primary-dark text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-gray-400">
+            <div class="flex flex-wrap justify-center gap-x-5 gap-y-2 mb-3"><a href="mailto:euroboischarbonpremium@gmail.com" class="hover:text-white"><i class="fas fa-envelope mr-1"></i>euroboischarbonpremium@gmail.com</a><a href="livraison.html" class="hover:text-white" data-i18n="footer.delivery">Conditions de livraison</a><a href="retours.html" class="hover:text-white" data-i18n="footer.returnsPolicy">Politique de retour et de remboursement</a><a href="confidentialite.html" class="hover:text-white" data-i18n="footer.privacy">Politique de confidentialité</a><a href="cookies.html" class="hover:text-white" data-i18n="footer.cookies">Politique de gestion des cookies</a></div>
+            <p data-i18n="footer.copyright">© 2025 Eurobois & Charbon. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="js/cart.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/i18n.js"></script>
+    <script>
+        var currentProduct = PRODUCTS[new URLSearchParams(location.search).get('id')] || PRODUCTS['charbon-10kg'];
+        (function () {
+            var p = currentProduct;
+            var fmt = function (n) { return n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; };
+            document.getElementById('p-img').src = p.image;
+            document.getElementById('p-img').alt = p.name;
+            document.getElementById('p-title').setAttribute('data-i18n', p.title);
+            document.getElementById('p-title').textContent = p.name;
+            document.getElementById('bc-title').setAttribute('data-i18n', p.title);
+            document.getElementById('bc-title').textContent = p.name;
+            var bc = document.getElementById('bc-cat');
+            if (p.cat === 'other') {
+                bc.setAttribute('href', 'produits.html');
+                bc.setAttribute('data-i18n', 'nav.offers');
+            } else {
+                bc.setAttribute('href', 'produits.html?cat=' + p.cat);
+                bc.setAttribute('data-i18n', 'nav.' + p.cat);
+            }
+            document.getElementById('p-desc').setAttribute('data-i18n', p.desc);
+            document.getElementById('p-reviews').textContent = p.reviews;
+            document.getElementById('p-price').textContent = fmt(p.price);
+            if (p.oldPrice) {
+                document.getElementById('p-old').textContent = fmt(p.oldPrice);
+            } else {
+                document.getElementById('p-old').style.display = 'none';
+                document.getElementById('p-promo').style.display = 'none';
+            }
+            document.title = p.name + ' - Eurobois & Charbon';
+        })();
+        function addCurrentToCart() {
+            var p = currentProduct;
+            addToCart(p.id, p.name, p.price, p.image, parseInt(document.getElementById('product-qty').textContent));
+        }
+        function changeQty(delta) {
+            const el = document.getElementById('product-qty');
+            let val = parseInt(el.textContent) + delta;
+            if (val < 1) val = 1;
+            el.textContent = val;
+        }
+    </script>
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/37066102523" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp" class="fixed bottom-5 right-5 z-[70] bg-[#25D366] hover:bg-[#1ebe57] text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commande confirmée - Eurobois & Charbon</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1a3a2a',
+                        'primary-dark': '#0f2418',
+                        'accent': '#e85d04',
+                        'orange-btn': '#f97316',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+
+    <header class="bg-white shadow-md">
+        <div class="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="images/logo.png" alt="Eurobois & Charbon" class="h-14 w-auto">
+            </a>
+            <div class="relative lang-switcher">
+                    <button type="button" onclick="toggleLangMenu()" class="flex items-center gap-1.5 cursor-pointer bg-transparent border-0 text-gray-600 hover:text-accent transition">
+                        <img src="https://flagcdn.com/16x12/lt.png" alt="Kalba" class="w-4 h-3 lang-flag-current">
+                        <span class="lang-label-current text-sm font-medium">LT</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden w-44 z-[100] border border-gray-100" style="min-width:10rem;">
+                        <button type="button" onclick="setLanguage('de')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/de.png" class="w-4 h-3" alt="DE"> Deutsch
+                        </button>
+                        <button type="button" onclick="setLanguage('en')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/gb.png" class="w-4 h-3" alt="EN"> English
+                        </button>
+                        <button type="button" onclick="setLanguage('lt')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/lt.png" class="w-4 h-3" alt="LT"> Lietuvių
+                        </button>
+                    </div>
+                </div>
+        </div>
+    </header>
+
+    <div class="max-w-3xl mx-auto px-4 py-16 text-center">
+        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-check text-4xl text-green-600"></i>
+        </div>
+        <h1 class="text-3xl font-bold text-primary mb-3" data-i18n="confirm.title">Thank you for your order!</h1>
+        <p class="text-gray-600 mb-2"><span data-i18n="confirm.thanks">Your order number is:</span> <strong id="order-number">#EB202500123</strong></p>
+        <p class="text-gray-600 text-sm mb-2" data-i18n="confirm.bankInfo">We have received your order. We will send you our bank details by email shortly so you can complete the payment by transfer.</p>
+        <p class="text-gray-500 text-sm mb-8"><span data-i18n="confirm.emailSent">A confirmation has been sent</span> <span id="order-email"></span></p>
+
+        <div class="bg-white rounded-xl shadow-md p-6 text-left mb-8">
+            <h2 class="font-bold mb-4" data-i18n="confirm.details">Détails de la commande</h2>
+            <div id="order-details" class="space-y-3 text-sm">
+                <!-- JS -->
+            </div>
+            <div class="border-t mt-4 pt-4 flex justify-between font-bold">
+                <span data-i18n="cart.total">Total</span>
+                <span id="order-total" class="text-primary">0,00 €</span>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="index.html" class="bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-3 rounded-lg transition">
+                <span data-i18n="confirm.backHome">Retour à l'accueil</span>
+            </a>
+            <button class="border border-primary text-primary font-semibold px-8 py-3 rounded-lg hover:bg-primary hover:text-white transition">
+                <span data-i18n="confirm.track">Suivre ma commande</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="js/cart.js"></script>
+    <script src="js/i18n.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = getCart();
+            const container = document.getElementById('order-details');
+            let total = 0;
+            let html = '';
+            cart.forEach(item => {
+                const itemTotal = item.price * item.qty;
+                total += itemTotal;
+                html += `
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <img src="${item.image}" class="w-12 h-12 object-cover rounded">
+                            <div>
+                                <div>${item.name}</div>
+                                <div class="text-gray-500">${typeof t==='function'?t('checkout.qty'):'Qté :'} ${item.qty}</div>
+                            </div>
+                        </div>
+                        <div class="font-medium">${itemTotal.toFixed(2).replace('.', ',')} €</div>
+                    </div>`;
+            });
+            container.innerHTML = html || '<p data-i18n="confirm.noItems">Aucun article</p>';
+                        document.getElementById('order-total').textContent = total.toFixed(2).replace('.', ',') + ' €';
+            
+            // Clear cart after order
+            localStorage.removeItem('eurobois_cart');
+        });
+
+        (function () {
+            var o = {};
+            try { o = JSON.parse(localStorage.getItem('eurobois_order') || '{}'); } catch (e) {}
+            if (o.number) document.getElementById('order-number').textContent = '#' + o.number;
+            var em = document.getElementById('order-email');
+            if (o.email) { em.textContent = ': ' + o.email; } else { em.parentElement.style.display = 'none'; }
+        })();
+    </script>
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/37066102523" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp" class="fixed bottom-5 right-5 z-[70] bg-[#25D366] hover:bg-[#1ebe57] text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+</body>
+</html>

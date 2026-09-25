@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre panier - Eurobois & Charbon</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1a3a2a',
+                        'primary-dark': '#0f2418',
+                        'accent': '#e85d04',
+                        'accent-hover': '#d35400',
+                        'orange-btn': '#f97316',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Top bar -->
+    <div class="bg-primary-dark text-white text-sm py-2 px-4 relative z-[60]">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <span data-i18n="topbar.delivery"><i class="fas fa-truck mr-1"></i> Livraison dans toute l'Europe</span>
+            <div class="flex items-center gap-4">
+                <span><i class="fas fa-phone-alt mr-1"></i> +370 661 02523</span>
+                <a href="https://wa.me/37066102523" target="_blank" rel="noopener" aria-label="Contactez-nous sur WhatsApp" class="flex items-center gap-1 hover:text-[#25D366] transition-colors"><i class="fab fa-whatsapp text-base"></i> <span class="hidden sm:inline">WhatsApp</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="images/logo.png" alt="Eurobois & Charbon" class="h-14 w-auto">
+            </a>
+            <nav class="hidden lg:flex items-center gap-5 text-sm font-medium">
+                <a href="index.html" class="hover:text-accent transition" data-i18n="nav.home">Accueil</a>
+                <a href="retours.html" class="hover:text-accent transition" data-i18n="nav.returnRefund">Retour et Remboursement</a>
+                <a href="index.html#livraison" class="hover:text-accent transition" data-i18n="nav.delivery">Livraison</a>
+                <a href="a-propos.html" class="hover:text-accent transition" data-i18n="nav.contact">Contact</a>
+                <div class="relative menus-dropdown">
+                    <button type="button" onclick="toggleMenusDropdown()" class="flex items-center gap-1.5 hover:text-accent transition bg-transparent border-0 cursor-pointer text-sm font-medium text-gray-800">
+                        <i class="fas fa-bars"></i>
+                        <span data-i18n="nav.menus">Menus</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="menus-panel hidden absolute left-0 top-full mt-2 bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden w-56 z-[100] border border-gray-100">
+                        <a href="produits.html?cat=firewood" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.firewood">Bois de chauffage</a>
+                        <a href="produits.html?cat=charcoal" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.charcoal">Charbon de bois</a>
+                        <a href="produits.html?cat=logs" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.logs">Bûches densifiées</a>
+                        <a href="produits.html?cat=pellets" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.pellets">Granulés</a>
+                        <a href="produits.html" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100 border-t" data-i18n="nav.offers">Nos offres</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="panier.html" class="relative text-accent">
+                <i class="fas fa-shopping-cart text-lg"></i>
+                <span id="cart-count" class="absolute -top-2 -right-2 bg-accent text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+            </a>
+                <div class="relative lang-switcher">
+                    <button type="button" onclick="toggleLangMenu()" class="flex items-center gap-1.5 cursor-pointer bg-transparent border-0 text-gray-600 hover:text-accent transition">
+                        <img src="https://flagcdn.com/16x12/lt.png" alt="Kalba" class="w-4 h-3 lang-flag-current">
+                        <span class="lang-label-current text-sm font-medium">LT</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden w-44 z-[100] border border-gray-100" style="min-width:10rem;">
+                        <button type="button" onclick="setLanguage('de')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/de.png" class="w-4 h-3" alt="DE"> Deutsch
+                        </button>
+                        <button type="button" onclick="setLanguage('en')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/gb.png" class="w-4 h-3" alt="EN"> English
+                        </button>
+                        <button type="button" onclick="setLanguage('lt')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/lt.png" class="w-4 h-3" alt="LT"> Lietuvių
+                        </button>
+                    </div>
+                </div>
+            <button class="lg:hidden text-gray-600" id="mobile-menu-btn" type="button">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t px-4 py-3">
+            <nav class="flex flex-col gap-1 text-sm font-medium">
+                <a href="index.html" class="py-2 hover:text-accent" data-i18n="nav.home">Accueil</a>
+                <a href="retours.html" class="py-2 hover:text-accent" data-i18n="nav.returnRefund">Retour et Remboursement</a>
+                <a href="index.html#livraison" class="py-2 hover:text-accent" data-i18n="nav.delivery">Livraison</a>
+                <a href="a-propos.html" class="py-2 hover:text-accent" data-i18n="nav.contact">Contact</a>
+                <div class="border-t my-2 pt-2">
+                    <p class="text-xs text-gray-400 uppercase tracking-wide mb-1 px-0" data-i18n="nav.menus">Menus</p>
+                    <a href="produits.html?cat=firewood" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.firewood">Bois de chauffage</a>
+                    <a href="produits.html?cat=charcoal" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.charcoal">Charbon de bois</a>
+                    <a href="produits.html?cat=logs" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.logs">Bûches densifiées</a>
+                    <a href="produits.html?cat=pellets" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.pellets">Granulés</a>
+                    <a href="produits.html" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.offers">Nos offres</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="max-w-5xl mx-auto px-4 py-10">
+        <h1 class="text-2xl md:text-3xl font-bold text-primary mb-8" data-i18n="cart.title">Votre panier</h1>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Cart items -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="hidden md:grid grid-cols-12 gap-4 p-4 bg-gray-50 text-sm font-semibold text-gray-600 border-b">
+                        <div class="col-span-6" data-i18n="cart.product">Produit</div>
+                        <div class="col-span-2 text-center" data-i18n="cart.unitPrice">Prix unitaire</div>
+                        <div class="col-span-2 text-center" data-i18n="cart.quantity">Quantité</div>
+                        <div class="col-span-2 text-right" data-i18n="cart.total">Total</div>
+                    </div>
+                    <div id="cart-items">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+                <a href="produits.html" class="inline-flex items-center gap-2 text-accent mt-4 hover:underline">
+                    <i class="fas fa-arrow-left"></i> <span data-i18n="cart.continue">Continuer mes achats</span>
+                </a>
+            </div>
+
+            <!-- Summary -->
+            <div>
+                <div class="bg-white rounded-xl shadow-md p-6 sticky top-24">
+                    <h2 class="font-bold text-lg mb-4" data-i18n="cart.summary">Récapitulatif</h2>
+                    <div class="space-y-3 text-sm mb-4">
+                        <div class="flex justify-between">
+                            <span data-i18n="cart.subtotal">Sous-total</span>
+                            <span id="subtotal">0,00 €</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span data-i18n="cart.shippingFrance">Frais de livraison (France)</span>
+                            <span id="shipping" data-i18n="cart.free">Gratuit</span>
+                        </div>
+                        <div class="border-t pt-3 flex justify-between font-bold text-lg">
+                            <span data-i18n="cart.total">Total</span>
+                            <span id="total" class="text-primary">0,00 €</span>
+                        </div>
+                    </div>
+                    <a href="commande.html" class="block w-full bg-orange-btn hover:bg-accent-hover text-white font-semibold py-3.5 rounded-lg text-center transition">
+                        <span data-i18n="cart.checkout">Valider ma commande →</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-primary-dark text-white py-8 mt-10">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-gray-400">
+            <div class="flex flex-wrap justify-center gap-x-5 gap-y-2 mb-3"><a href="mailto:euroboischarbonpremium@gmail.com" class="hover:text-white"><i class="fas fa-envelope mr-1"></i>euroboischarbonpremium@gmail.com</a><a href="livraison.html" class="hover:text-white" data-i18n="footer.delivery">Conditions de livraison</a><a href="retours.html" class="hover:text-white" data-i18n="footer.returnsPolicy">Politique de retour et de remboursement</a><a href="confidentialite.html" class="hover:text-white" data-i18n="footer.privacy">Politique de confidentialité</a><a href="cookies.html" class="hover:text-white" data-i18n="footer.cookies">Politique de gestion des cookies</a></div>
+            <p data-i18n="footer.copyright">© 2025 Eurobois & Charbon. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="js/cart.js"></script>
+    <script src="js/i18n.js"></script>
+    <script>
+        function renderCart() {
+            const cart = getCart();
+            const container = document.getElementById('cart-items');
+            
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="p-10 text-center text-gray-500">
+                        <i class="fas fa-shopping-cart text-4xl mb-4 text-gray-300"></i>
+                        <p data-i18n="cart.empty">Votre panier est vide</p>
+                        <a href="produits.html" class="inline-block mt-4 text-accent hover:underline" data-i18n="cart.discover">Découvrir nos produits</a>
+                    </div>`;
+                document.getElementById('subtotal').textContent = '0,00 €';
+                document.getElementById('total').textContent = '0,00 €';
+                return;
+            }
+
+            let html = '';
+            let subtotal = 0;
+            cart.forEach(item => {
+                const itemTotal = item.price * item.qty;
+                subtotal += itemTotal;
+                html += `
+                    <div class="grid grid-cols-12 gap-4 p-4 items-center border-b">
+                        <div class="col-span-12 md:col-span-6 flex items-center gap-4">
+                            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg">
+                            <div>
+                                <div class="font-medium">${item.name}</div>
+                                <button onclick="removeFromCart('${item.id}')" class="text-xs text-red-500 hover:underline mt-1">
+                                    <i class="fas fa-trash-alt"></i> <span data-i18n="cart.remove">Supprimer</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-span-4 md:col-span-2 text-center">${item.price.toFixed(2).replace('.', ',')} €</div>
+                        <div class="col-span-4 md:col-span-2 flex justify-center items-center gap-2">
+                            <button onclick="updateQty('${item.id}', ${item.qty - 1})" class="border rounded w-8 h-8 flex items-center justify-center hover:bg-gray-100">-</button>
+                            <span class="w-8 text-center">${item.qty}</span>
+                            <button onclick="updateQty('${item.id}', ${item.qty + 1})" class="border rounded w-8 h-8 flex items-center justify-center hover:bg-gray-100">+</button>
+                        </div>
+                        <div class="col-span-4 md:col-span-2 text-right font-semibold">${itemTotal.toFixed(2).replace('.', ',')} €</div>
+                    </div>`;
+            });
+            container.innerHTML = html;
+
+            const shipping = 0;
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2).replace('.', ',') + ' €';
+            document.getElementById('total').textContent = (subtotal + shipping).toFixed(2).replace('.', ',') + ' €';
+        }
+
+        document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/37066102523" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp" class="fixed bottom-5 right-5 z-[70] bg-[#25D366] hover:bg-[#1ebe57] text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - Eurobois & Charbon</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1a3a2a',
+                        'primary-dark': '#0f2418',
+                        'accent': '#e85d04',
+                        'accent-hover': '#d35400',
+                        'orange-btn': '#f97316',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Top bar -->
+    <div class="bg-primary-dark text-white text-sm py-2 px-4 relative z-[60]">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <span data-i18n="topbar.delivery"><i class="fas fa-truck mr-1"></i> Livraison dans toute l'Europe</span>
+            <div class="flex items-center gap-4">
+                <span><i class="fas fa-phone-alt mr-1"></i> +370 661 02523</span>
+                <a href="https://wa.me/37066102523" target="_blank" rel="noopener" aria-label="Contactez-nous sur WhatsApp" class="flex items-center gap-1 hover:text-[#25D366] transition-colors"><i class="fab fa-whatsapp text-base"></i> <span class="hidden sm:inline">WhatsApp</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="images/logo.png" alt="Eurobois & Charbon" class="h-14 w-auto">
+            </a>
+            <nav class="hidden lg:flex items-center gap-5 text-sm font-medium">
+                <a href="index.html" class="hover:text-accent transition" data-i18n="nav.home">Accueil</a>
+                <a href="retours.html" class="hover:text-accent transition" data-i18n="nav.returnRefund">Retour et Remboursement</a>
+                <a href="index.html#livraison" class="hover:text-accent transition" data-i18n="nav.delivery">Livraison</a>
+                <a href="a-propos.html" class="hover:text-accent transition" data-i18n="nav.contact">Contact</a>
+                <div class="relative menus-dropdown">
+                    <button type="button" onclick="toggleMenusDropdown()" class="flex items-center gap-1.5 hover:text-accent transition bg-transparent border-0 cursor-pointer text-sm font-medium text-gray-800">
+                        <i class="fas fa-bars"></i>
+                        <span data-i18n="nav.menus">Menus</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="menus-panel hidden absolute left-0 top-full mt-2 bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden w-56 z-[100] border border-gray-100">
+                        <a href="produits.html?cat=firewood" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.firewood">Bois de chauffage</a>
+                        <a href="produits.html?cat=charcoal" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.charcoal">Charbon de bois</a>
+                        <a href="produits.html?cat=logs" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.logs">Bûches densifiées</a>
+                        <a href="produits.html?cat=pellets" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.pellets">Granulés</a>
+                        <a href="produits.html" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100 border-t" data-i18n="nav.offers">Nos offres</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="panier.html" class="relative text-gray-600 hover:text-accent">
+                <i class="fas fa-shopping-cart text-lg"></i>
+                <span id="cart-count" class="absolute -top-2 -right-2 bg-accent text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+            </a>
+                <div class="relative lang-switcher">
+                    <button type="button" onclick="toggleLangMenu()" class="flex items-center gap-1.5 cursor-pointer bg-transparent border-0 text-gray-600 hover:text-accent transition">
+                        <img src="https://flagcdn.com/16x12/lt.png" alt="Kalba" class="w-4 h-3 lang-flag-current">
+                        <span class="lang-label-current text-sm font-medium">LT</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden w-44 z-[100] border border-gray-100" style="min-width:10rem;">
+                        <button type="button" onclick="setLanguage('de')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/de.png" class="w-4 h-3" alt="DE"> Deutsch
+                        </button>
+                        <button type="button" onclick="setLanguage('en')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/gb.png" class="w-4 h-3" alt="EN"> English
+                        </button>
+                        <button type="button" onclick="setLanguage('lt')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/lt.png" class="w-4 h-3" alt="LT"> Lietuvių
+                        </button>
+                    </div>
+                </div>
+            <button class="lg:hidden text-gray-600" id="mobile-menu-btn" type="button">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t px-4 py-3">
+            <nav class="flex flex-col gap-1 text-sm font-medium">
+                <a href="index.html" class="py-2 hover:text-accent" data-i18n="nav.home">Accueil</a>
+                <a href="retours.html" class="py-2 hover:text-accent" data-i18n="nav.returnRefund">Retour et Remboursement</a>
+                <a href="index.html#livraison" class="py-2 hover:text-accent" data-i18n="nav.delivery">Livraison</a>
+                <a href="a-propos.html" class="py-2 hover:text-accent" data-i18n="nav.contact">Contact</a>
+                <div class="border-t my-2 pt-2">
+                    <p class="text-xs text-gray-400 uppercase tracking-wide mb-1 px-0" data-i18n="nav.menus">Menus</p>
+                    <a href="produits.html?cat=firewood" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.firewood">Bois de chauffage</a>
+                    <a href="produits.html?cat=charcoal" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.charcoal">Charbon de bois</a>
+                    <a href="produits.html?cat=logs" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.logs">Bûches densifiées</a>
+                    <a href="produits.html?cat=pellets" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.pellets">Granulés</a>
+                    <a href="produits.html" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.offers">Nos offres</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <div class="relative h-56 md:h-72">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80" alt="Forêt" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/50 flex items-center">
+            <div class="max-w-7xl mx-auto px-4 text-white">
+                <h1 class="text-3xl md:text-4xl font-bold" data-i18n="about.title">À propos de Eurobois & Charbon</h1>
+                <p class="text-lg text-gray-200 mt-1" data-i18n="about.subtitle">Une passion : le bois et le feu</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-14">
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+            <!-- About text -->
+            <div>
+                <h2 class="text-2xl font-bold text-primary mb-4" data-i18n="about.history">Notre histoire</h2>
+                <p class="text-gray-600 mb-4">
+                    <span data-i18n="about.p1">Depuis 2010, Eurobois & Charbon fournit des particuliers et des professionnels en bois de chauffage, charbon de bois et produits dérivés. Nous sélectionnons nos produits avec soin pour vous garantir une qualité optimale et un service de livraison rapide dans toute l'Europe.</span>
+                </p>
+                <p class="text-gray-600 mb-6">
+                    <span data-i18n="about.p2">Notre engagement : des produits naturels, performants et respectueux de l'environnement, livrés directement chez vous.</span>
+                </p>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="bg-white rounded-xl p-5 shadow-sm border">
+                        <i class="fas fa-award text-2xl text-accent mb-2"></i>
+                        <h3 class="font-semibold mb-1" data-i18n="about.quality">Qualité</h3>
+                        <p class="text-sm text-gray-500" data-i18n="about.qualityDesc">Produits sélectionnés avec soin</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-5 shadow-sm border">
+                        <i class="fas fa-leaf text-2xl text-accent mb-2"></i>
+                        <h3 class="font-semibold mb-1" data-i18n="about.eco">Engagement écologique</h3>
+                        <p class="text-sm text-gray-500" data-i18n="about.ecoDesc">Bois de forêts gérées durablement</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-5 shadow-sm border">
+                        <i class="fas fa-headset text-2xl text-accent mb-2"></i>
+                        <h3 class="font-semibold mb-1" data-i18n="about.service">Service client</h3>
+                        <p class="text-sm text-gray-500" data-i18n="about.serviceDesc">Une équipe à votre écoute 7j/7</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-5 shadow-sm border">
+                        <i class="fas fa-truck text-2xl text-accent mb-2"></i>
+                        <h3 class="font-semibold mb-1" data-i18n="about.experience">Plus de 15 ans d'expérience</h3>
+                        <p class="text-sm text-gray-500" data-i18n="about.experienceDesc">Votre priorité</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact form -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-xl font-bold text-primary mb-2" data-i18n="about.sendMessage">Envoyez-nous un message</h2>
+                <p class="text-sm text-gray-600 mb-4"><i class="fas fa-envelope text-accent mr-1"></i> <a href="mailto:euroboischarbonpremium@gmail.com" class="text-accent hover:underline">euroboischarbonpremium@gmail.com</a></p>
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1" data-i18n="about.name">Nom</label>
+                        <input id="contact-name" type="text" class="w-full border rounded-lg px-3 py-2.5 focus:outline-none focus:border-accent" placeholder="Votre nom" data-i18n-placeholder="about.namePlaceholder">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1" data-i18n="about.email">Email</label>
+                        <input id="contact-email" type="email" class="w-full border rounded-lg px-3 py-2.5 focus:outline-none focus:border-accent" placeholder="votre@email.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1" data-i18n="about.message">Message</label>
+                        <textarea id="contact-message" rows="4" class="w-full border rounded-lg px-3 py-2.5 focus:outline-none focus:border-accent" placeholder="Votre message..." data-i18n-placeholder="about.messagePlaceholder"></textarea>
+                    </div>
+                    <button type="button" onclick="sendContact()" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-semibold py-3 rounded-lg transition" data-i18n="about.send">Envoyer</button>
+                    <p id="contact-status" class="text-sm mt-3"></p>
+                </form>
+
+                <div class="mt-8">
+                    <h3 class="font-semibold mb-3" data-i18n="location.title">Notre localisation</h3>
+                    <p class="text-sm text-gray-500 mb-2" data-i18n="location.text">Santariškių g. 73, 08457 Vilnius, Lituanie</p>
+                    <iframe
+                        src="https://www.google.com/maps?q=Santari%C5%A1ki%C5%B3+g.+73%2C+08457+Vilnius%2C+Lituanie&output=embed"
+                        class="w-full h-48 rounded-lg border-0"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Localisation Eurobois & Charbon - Vilnius, Lituanie">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Retour et Remboursement -->
+    <div class="max-w-7xl mx-auto px-4 pb-14">
+        <div id="retours" class="bg-white rounded-xl shadow-md p-6 border scroll-mt-24">
+            <span id="remboursement"></span>
+            <h2 class="text-xl font-bold text-primary mb-3" data-i18n="nav.returnRefund">Retour et Remboursement</h2>
+            <p class="text-gray-600 text-sm mb-2" data-i18n="returns.text1">Vous disposez de 14 jours à compter de la réception pour retourner un produit non conforme ou endommagé.</p>
+            <p class="text-gray-600 text-sm mb-2" data-i18n="returns.text2">Contactez notre service client pour obtenir une étiquette de retour. Les produits doivent être dans leur emballage d'origine.</p>
+            <p class="text-gray-600 text-sm mb-2" data-i18n="refund.text1">Le remboursement est effectué sous 5 à 10 jours ouvrés après réception et validation du retour.</p>
+            <p class="text-gray-600 text-sm mb-3" data-i18n="refund.text2">Le montant est crédité sur le même moyen de paiement utilisé lors de la commande.</p>
+            <a href="retours.html" class="text-accent font-medium hover:underline text-sm" data-i18n="footer.returnsPolicy">Politique de retour et de remboursement</a> →
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark text-white pt-12 pb-6">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="images/logo.png" alt="Eurobois & Charbon" class="h-14 w-auto bg-white rounded-lg p-1.5">
+                    </div>
+                    <p class="text-sm text-gray-400" data-i18n="footer.tagline">Le meilleur du bois et du charbon.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4" data-i18n="footer.links">Liens utiles</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-white" data-i18n="nav.home">Accueil</a></li>
+                        <li><a href="produits.html?cat=firewood" class="hover:text-white" data-i18n="nav.firewood">Produits</a></li>
+                        <li><a href="a-propos.html" class="hover:text-white" data-i18n="nav.contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4" data-i18n="footer.info">Informations</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="livraison.html" class="hover:text-white" data-i18n="footer.delivery">Conditions de livraison</a></li>
+                        <li><a href="retours.html" class="hover:text-white" data-i18n="footer.returnsPolicy">Politique de retour et de remboursement</a></li>
+                        <li><a href="confidentialite.html" class="hover:text-white" data-i18n="footer.privacy">Politique de confidentialité</a></li>
+                        <li><a href="cookies.html" class="hover:text-white" data-i18n="footer.cookies">Politique de gestion des cookies</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4" data-i18n="footer.contact">Contact</h4>
+                    <p class="text-sm text-gray-400">+370 661 02523</p>
+                    <p class="text-sm text-gray-400 mt-1"><a href="mailto:euroboischarbonpremium@gmail.com" class="hover:text-white"><i class="fas fa-envelope mr-1"></i>euroboischarbonpremium@gmail.com</a></p>
+                    <p class="text-sm text-gray-400">contact@eurobois-charbon.fr</p>
+                    <p class="text-sm text-gray-400 mt-1" data-i18n="footer.address">Santariškių g. 73, 08457 Vilnius, Lituanie</p>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-6 text-center text-sm text-gray-400">
+                <p data-i18n="footer.copyright">© 2025 Eurobois & Charbon. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/cart.js"></script>
+    <script src="js/forms.js"></script>
+    <script src="js/i18n.js"></script>
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/37066102523" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp" class="fixed bottom-5 right-5 z-[70] bg-[#25D366] hover:bg-[#1ebe57] text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eurobois & Charbon - Bois de chauffage & Charbon de bois</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1a3a2a',
+                        'primary-dark': '#0f2418',
+                        'accent': '#e85d04',
+                        'accent-hover': '#d35400',
+                        'orange-btn': '#f97316',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.40), rgba(0,0,0,0.50)), url('images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .product-card { min-width: 0; width: 100%; }
+        .product-card img { width: 100%; height: 12rem; object-fit: cover; display: block; }
+        .product-card:hover { transform: translateY(-4px); transition: all 0.3s ease; }
+        .category-icon { transition: all 0.3s ease; }
+        .category-icon:hover { transform: scale(1.08); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Top bar -->
+    <div class="bg-primary-dark text-white text-sm py-2 px-4 relative z-[60]">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center gap-4">
+                <span data-i18n="topbar.delivery"><i class="fas fa-truck mr-1"></i> Livraison dans toute l'Europe</span>
+                <span class="hidden sm:inline" data-i18n="topbar.payment"><i class="fas fa-shield-alt mr-1"></i> Paiement sécurisé</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span><i class="fas fa-phone-alt mr-1"></i> <span data-i18n="topbar.service">Service client</span> : +370 661 02523</span>
+                <a href="https://wa.me/37066102523" target="_blank" rel="noopener" aria-label="Contactez-nous sur WhatsApp" class="flex items-center gap-1 hover:text-[#25D366] transition-colors"><i class="fab fa-whatsapp text-base"></i> <span class="hidden sm:inline">WhatsApp</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="images/logo.png" alt="Eurobois & Charbon" class="h-14 w-auto">
+            </a>
+
+                        <!-- Navigation -->
+            <nav class="hidden lg:flex items-center gap-5 text-sm font-medium">
+                <a href="index.html" class="text-accent font-semibold" data-i18n="nav.home">Accueil</a>
+                <a href="retours.html" class="hover:text-accent transition" data-i18n="nav.returnRefund">Retour et Remboursement</a>
+                <a href="index.html#livraison" class="hover:text-accent transition" data-i18n="nav.delivery">Livraison</a>
+                <a href="a-propos.html" class="hover:text-accent transition" data-i18n="nav.contact">Contact</a>
+                <!-- Menus = catégories produits -->
+                <div class="relative menus-dropdown">
+                    <button type="button" onclick="toggleMenusDropdown()" class="flex items-center gap-1.5 hover:text-accent transition bg-transparent border-0 cursor-pointer text-sm font-medium text-gray-800">
+                        <i class="fas fa-bars"></i>
+                        <span data-i18n="nav.menus">Menus</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div id="menus-dropdown-panel" class="menus-panel hidden absolute left-0 top-full mt-2 bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden w-56 z-[100] border border-gray-100">
+                        <a href="produits.html?cat=firewood" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.firewood">Bois de chauffage</a>
+                        <a href="produits.html?cat=charcoal" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.charcoal">Charbon de bois</a>
+                        <a href="produits.html?cat=logs" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.logs">Bûches densifiées</a>
+                        <a href="produits.html?cat=pellets" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100" data-i18n="nav.pellets">Granulés</a>
+                        <a href="produits.html" class="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-gray-100 border-t" data-i18n="nav.offers">Nos offres</a>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Icons -->
+            <div class="flex items-center gap-4">
+                <button class="text-gray-600 hover:text-accent"><i class="fas fa-search text-lg"></i></button>
+                <a href="panier.html" class="relative text-gray-600 hover:text-accent">
+                    <i class="fas fa-shopping-cart text-lg"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-accent text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                </a>
+                
+                <div class="relative lang-switcher">
+                    <button type="button" onclick="toggleLangMenu()" class="flex items-center gap-1.5 cursor-pointer bg-transparent border-0 text-gray-600 hover:text-accent transition">
+                        <img src="https://flagcdn.com/16x12/lt.png" alt="Kalba" class="w-4 h-3 lang-flag-current">
+                        <span class="lang-label-current text-sm font-medium">LT</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden w-44 z-[100] border border-gray-100" style="min-width:10rem;">
+                        <button type="button" onclick="setLanguage('de')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/de.png" class="w-4 h-3" alt="DE"> Deutsch
+                        </button>
+                        <button type="button" onclick="setLanguage('en')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/gb.png" class="w-4 h-3" alt="EN"> English
+                        </button>
+                        <button type="button" onclick="setLanguage('lt')" class="flex items-center gap-2 w-full px-3 py-2.5 text-sm hover:bg-gray-100 text-left">
+                            <img src="https://flagcdn.com/16x12/lt.png" class="w-4 h-3" alt="LT"> Lietuvių
+                        </button>
+                    </div>
+                </div>
+<button class="lg:hidden text-gray-600" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+                <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t px-4 py-3">
+            <nav class="flex flex-col gap-1 text-sm font-medium">
+                <a href="index.html" class="py-2 hover:text-accent" data-i18n="nav.home">Accueil</a>
+                <a href="retours.html" class="py-2 hover:text-accent" data-i18n="nav.returnRefund">Retour et Remboursement</a>
+                <a href="index.html#livraison" class="py-2 hover:text-accent" data-i18n="nav.delivery">Livraison</a>
+                <a href="a-propos.html" class="py-2 hover:text-accent" data-i18n="nav.contact">Contact</a>
+                <div class="border-t my-2 pt-2">
+                    <p class="text-xs text-gray-400 uppercase tracking-wide mb-1 px-0" data-i18n="nav.menus">Menus</p>
+                    <a href="produits.html?cat=firewood" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.firewood">Bois de chauffage</a>
+                    <a href="produits.html?cat=charcoal" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.charcoal">Charbon de bois</a>
+                    <a href="produits.html?cat=logs" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.logs">Bûches densifiées</a>
+                    <a href="produits.html?cat=pellets" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.pellets">Granulés</a>
+                    <a href="produits.html" class="block py-2 pl-2 hover:text-accent" data-i18n="nav.offers">Nos offres</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white relative">
+        <div class="max-w-7xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4" data-i18n="hero.title">
+                    Bois de chauffage &<br>charbon de bois
+                </h1>
+                <p class="text-xl md:text-2xl font-semibold text-orange-300 mb-4" data-i18n="hero.subtitle">
+                    Livrés chez vous en Europe
+                </p>
+                <p class="text-gray-200 mb-6 max-w-lg" data-i18n="hero.desc">
+                    Des produits de qualité, sélectionnés avec soin, pour un chauffage performant et des moments conviviaux autour du feu.
+                </p>
+                <div class="flex flex-wrap gap-4 mb-8 text-sm">
+                    <span class="flex items-center gap-2"><i class="fas fa-check-circle text-green-400"></i> <span data-i18n="hero.check1">Bois sec haute performance</span></span>
+                    <span class="flex items-center gap-2"><i class="fas fa-check-circle text-green-400"></i> <span data-i18n="hero.check2">Charbon premium 100% naturel</span></span>
+                    <span class="flex items-center gap-2"><i class="fas fa-check-circle text-green-400"></i> <span data-i18n="hero.check3">Livraison rapide partout en Europe</span></span>
+                    <span class="flex items-center gap-2"><i class="fas fa-check-circle text-green-400"></i> <span data-i18n="hero.check4">Paiement sécurisé SSL</span></span>
+                </div>
+                <a href="produits.html" class="inline-flex items-center gap-2 bg-orange-btn hover:bg-accent-hover text-white font-semibold px-8 py-3.5 rounded-lg transition shadow-lg">
+                    <span data-i18n="hero.cta">Découvrir nos produits</span> <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Produits -->
+    <section class="py-14">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-primary" data-i18n="products.title">Nos produits</h2>
+                <a href="produits.html" class="text-accent font-medium hover:underline"><span data-i18n="products.seeAll">Voir tous les produits</span> →</a>
+            </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div data-cat="firewood" class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                    <div class="relative">
+                        <a href="produit.html?id=bois-chene-1m3" class="block"><img src="images/bois-chene-1m3.jpg" alt="Bois de chêne sec 1 m³" class="w-full h-48 object-cover"></a>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-sm mb-1"><a href="produit.html?id=bois-chene-1m3" class="hover:text-accent transition" data-i18n="prod.oak1.title">Bois de chêne sec – 1 m³</a></h3>
+                        <p class="text-xs text-gray-500 mb-2" data-i18n="prod.oak1.desc">Bûches de 25 cm / 33 cm / 50 cm</p>
+                        <div class="flex items-center gap-1 mb-2">
+                            <div class="text-yellow-400 text-xs">★★★★★</div>
+                            <span class="text-xs text-gray-500">(124)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-lg font-bold text-primary">129,00 €</span>
+                            <span class="text-xs text-gray-500" data-i18n="products.ttc">TTC</span>
+                        </div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <button class="qty-btn border rounded w-8 h-8 flex items-center justify-center hover:bg-gray-100" data-action="minus">-</button>
+                            <span class="qty-value w-8 text-center">1</span>
+                            <button class="qty-btn border rounded w-8 h-8 flex items-center justify-center hover:bg-gray-100" data-action="plus">+</button>
+                        </div>
+                        <button onclick="addToCart('bois-chene-1m3', 'Bois de chêne sec – 1 m³', 129.00, 'images/bois-chene-1m3.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg transition text-sm">
+                            <i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span>
+                        </button>
+                        <p class="text-xs text-gray-500 mt-2 text-center"><i class="fas fa-truck mr-1"></i> <span data-i18n="products.delivery2to4">Livraison sous 2 à 4 jours</span></p>
+                    </div>
+                </div>
+
+                <!-- Product 2: Hêtre 2 m³ -->
+<div data-cat="firewood" class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                    <div class="relative">
+                        <a href="produit.html?id=bois-hetre-2m3" class="block"><img src="images/bois-hetre-2m3.jpg" alt="Bois de hêtre sec 2 m³" class="w-full h-48 object-cover"></a>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-sm mb-1"><a href="produit.html?id=bois-hetre-2m3" class="hover:text-accent transition" data-i18n="prod.beech2.title">Bois de hêtre sec – 2 m³</a></h3>
+                        <p class="text-xs text-gray-500 mb-2" data-i18n="prod.beech2.desc">Bûches 25 cm / 33 cm / 40 cm</p>
+                        <div class="flex items-center gap-1 mb-2">
+                            <div class="text-yellow-400 text-xs">★★★★★</div>
+                            <span class="text-xs text-gray-500">(98)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-lg font-bold text-primary">219,00 €</span>
+                            <span class="text-xs text-gray-500" data-i18n="products.ttc">TTC</span>
+                        </div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <button class="qty-btn border rounded w-8 h-8 flex items-center justify-center hover:bg-gray-100" data-action="minus">-</button>
+                            <span class="qty-value w-8 text-center">1</span>
+                            <button class="qty-btn border rounded w-8 h-8 flex items-center justify-center hover:bg-gray-100" data-action="plus">+</button>
+                        </div>
+                        <button onclick="addToCart('bois-hetre-2m3', 'Bois de hêtre sec – 2 m³', 219.00, 'images/bois-hetre-2m3.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg transition text-sm">
+                            <i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span>
+                        </button>
+                        <p class="text-xs text-gray-500 mt-2 text-center"><i class="fas fa-truck mr-1"></i> <span data-i18n="products.delivery2to4">Livraison sous 2 à 4 jours</span></p>
+                    </div>
+                </div>
+
+                <!-- Product 3: Charme 2 m³ -->
+<div data-cat="firewood" class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                    <div class="relative">
+                        <a href="produit.html?id=bois-charme-2m3" class="block"><img src="images/bois-charme-2m3.jpg" alt="Bois de charme sec 2 m³" class="w-full h-48 object-cover"></a>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-sm mb-1"><a href="produit.html?id=bois-charme-2m3" class="hover:text-accent transition" data-i18n="prod.hornbeam2.title">Bois de charme sec – 2 m³</a></h3>
+                        <p class="text-xs text-gray-500 mb-2" data-i18n="prod.hornbeam2.desc">Bûches 25 cm / 33 cm / 40 cm</p>
+                        <div class="flex items-center gap-1 mb-2">
+                            <div class="text-yellow-400 text-xs">★★★★★</div>
+                            <span class="text-xs text-gray-500">(76)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-lg font-bold text-primary">199,00 €</span>
+                            <span class="text-xs text-gray-500" data-i18n="products.ttc">TTC</span>
+                        </div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <button class="qty-btn border rounded w-8 h-8 flex items-center justify-center hover:bg-gray-100" data-action="minus">-</button>
+                            <span class="qty-value w-8 text-center">1</span>
+                            <button class="qty-btn border rounded w-8 h-8 flex items-center justify-center hover:bg-gray-100" data-action="plus">+</button>
+                        </div>
+                        <button onclick="addToCart('bois-charme-2m3', 'Bois de charme sec – 2 m³', 199.00, 'images/bois-charme-2m3.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg transition text-sm">
+                            <i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span>
+                        </button>
+                        <p class="text-xs text-gray-500 mt-2 text-center"><i class="fas fa-truck mr-1"></i> <span data-i18n="products.delivery2to4">Livraison sous 2 à 4 jours</span></p>
+                    </div>
+                </div>
+
+                <!-- Product 4: Chêne 2 m³ Meilleure vente -->
+<div data-cat="firewood" class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                    <div class="relative">
+                        <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded" data-i18n="products.bestseller">Meilleure vente</span>
+                        <a href="produit.html?id=bois-chene-2m3" class="block"><img src="images/bois-chene-2m3.jpg" alt="Bois de chêne sec 2 m³" class="w-full h-48 object-cover"></a>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-sm mb-1"><a href="produit.html?id=bois-chene-2m3" class="hover:text-accent transition" data-i18n="prod.oak2.title">Bois de chêne sec – 2 m³</a></h3>
+                        <p class="text-xs text-gray-500 mb-2" data-i18n="prod.oak2.desc">Bûches 25 cm / 33 cm / 40 cm (au choix)</p>
+                        <div class="flex items-center gap-1 mb-2">
+                            <div class="text-yellow-400 text-xs">★★★★★</div>
+                            <span class="text-xs text-gray-500">(112)</span>
+                        </div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-lg font-bold text-primary">248,00 €</span>
+                            <span class="text-xs text-gray-500" data-i18n="products.ttc">TTC</span>
+                        </div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <button class="qty-btn border rounded w-8 h-8 flex items-center justify-center hover:bg-gray-100" data-action="minus">-</button>
+                            <span class="qty-value w-8 text-center">1</span>
+                            <button class="qty-btn border rounded w-8 h-8 flex items-center justify-center hover:bg-gray-100" data-action="plus">+</button>
+                        </div>
+                        <button onclick="addToCart('bois-chene-2m3', 'Bois de chêne sec – 2 m³', 248.00, 'images/bois-chene-2m3.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg transition text-sm">
+                            <i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span>
+                        </button>
+                        <p class="text-xs text-gray-500 mt-2 text-center"><i class="fas fa-truck mr-1"></i> <span data-i18n="products.delivery2to4">Livraison sous 2 à 4 jours</span></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Livraison Europe -->
+    <section id="livraison" class="py-14 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4" data-i18n="delivery.title">Livraison simple et rapide dans toute l'Europe</h2>
+                    <p class="text-gray-300 mb-6" data-i18n="delivery.text">
+                        Nous livrons en France, Belgique, Allemagne, Luxembourg, Pays-Bas, Suisse, Lituanie, Pologne, Slovénie et dans de nombreux autres pays européens.
+                    </p>
+                    <a href="livraison.html" class="inline-flex items-center gap-2 bg-white text-primary font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">
+                        <span data-i18n="delivery.cta">Voir les zones de livraison</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="rounded-xl overflow-hidden">
+                    <img src="images/carte-livraison-europe.jpg" alt="Zones de livraison en Europe" class="w-full h-auto rounded-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark text-white pt-12 pb-6">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="images/logo.png" alt="Eurobois & Charbon" class="h-14 w-auto bg-white rounded-lg p-1.5">
+                    </div>
+                    <p class="text-sm text-gray-400" data-i18n="footer.taglineLong">Le meilleur du bois et du charbon. Depuis 2010.</p>
+                    <p class="text-sm text-gray-400 mt-2" data-i18n="footer.address">Santariškių g. 73, 08457 Vilnius, Lituanie</p>
+                    <p class="text-sm text-gray-400 mt-2"><a href="mailto:euroboischarbonpremium@gmail.com" class="hover:text-white"><i class="fas fa-envelope mr-1"></i>euroboischarbonpremium@gmail.com</a></p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4" data-i18n="footer.links">Liens utiles</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-white" data-i18n="nav.home">Accueil</a></li>
+                        <li><a href="produits.html?cat=firewood" class="hover:text-white" data-i18n="nav.firewood">Bois de chauffage</a></li>
+                        <li><a href="produits.html?cat=charcoal" class="hover:text-white" data-i18n="nav.charcoal">Charbon de bois</a></li>
+                        <li><a href="produits.html?cat=logs" class="hover:text-white" data-i18n="nav.logs">Bûches densifiées</a></li>
+                        <li><a href="produits.html?cat=pellets" class="hover:text-white" data-i18n="nav.pellets">Granulés</a></li>
+                        <li><a href="a-propos.html" class="hover:text-white" data-i18n="nav.contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4" data-i18n="footer.info">Informations</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="livraison.html" class="hover:text-white" data-i18n="footer.delivery">Conditions de livraison</a></li>
+                        <li><a href="retours.html" class="hover:text-white" data-i18n="footer.returnsPolicy">Politique de retour et de remboursement</a></li>
+                        <li><a href="confidentialite.html" class="hover:text-white" data-i18n="footer.privacy">Politique de confidentialité</a></li>
+                        <li><a href="cookies.html" class="hover:text-white" data-i18n="footer.cookies">Politique de gestion des cookies</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4" data-i18n="footer.follow">Suivez-nous</h4>
+                    <div class="flex gap-3 mb-4">
+                        <a href="#" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-2" data-i18n="footer.newsletter">Recevez nos offres spéciales</p>
+                    <div class="flex">
+                        <input id="newsletter-email" type="email" placeholder="Votre email" data-i18n-placeholder="footer.emailPlaceholder" class="bg-white/10 border border-white/20 rounded-l-lg px-3 py-2 text-sm w-full focus:outline-none focus:border-accent">
+                        <button type="button" onclick="subscribeNewsletter()" class="bg-accent hover:bg-accent-hover px-4 rounded-r-lg text-sm font-medium" data-i18n="footer.subscribe">S'inscrire</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
+                <p data-i18n="footer.copyright">© 2025 Eurobois & Charbon. Tous droits réservés.</p>
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-university text-2xl"></i>
+                    <i class="fab fa-cc-paypal text-2xl"></i>
+                    <i class="fas fa-lock text-lg"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/cart.js"></script>
+    <script src="js/forms.js"></script>
+    <script src="js/i18n.js"></script>
+    <script>
+
+        // Quantity buttons
+        document.querySelectorAll('.qty-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const container = this.parentElement;
+                const valueEl = container.querySelector('.qty-value');
+                let val = parseInt(valueEl.textContent);
+                if (this.dataset.action === 'plus') val++;
+                else if (val > 1) val--;
+                valueEl.textContent = val;
+            });
+        });
+    </script>
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/37066102523" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp" class="fixed bottom-5 right-5 z-[70] bg-[#25D366] hover:bg-[#1ebe57] text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+</body>
+</html>
