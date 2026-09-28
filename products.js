@@ -72,7 +72,7 @@ const PRODUCTS = {
   "granules-15kg": {
     "id": "granules-15kg",
     "name": "Granulés de bois - 15 kg",
-    "price": 6.9,
+    "price": 5.5,
     "image": "images/granules-bois-15kg.jpg",
     "cat": "pellets",
     "title": "prod.pellets15.title",
@@ -81,8 +81,8 @@ const PRODUCTS = {
   },
   "granules-120kg": {
     "id": "granules-120kg",
-    "name": "Granulés de bois - 120 kg",
-    "price": 37.9,
+    "name": "Granulés de bois - 990kg",
+    "price": 363.0,
     "image": "images/granules-bois-120kg.jpg",
     "cat": "pellets",
     "title": "prod.pellets120.title",
@@ -91,8 +91,8 @@ const PRODUCTS = {
   },
   "buches-densifiees-10kg": {
     "id": "buches-densifiees-10kg",
-    "name": "Bûches densifiées - 10 kg",
-    "price": 7.9,
+    "name": "Bûches densifiées - 15 kg",
+    "price": 5.61,
     "image": "images/buches-densifiees-10kg.jpg",
     "cat": "logs",
     "title": "prod.densified10.title",
@@ -112,7 +112,7 @@ const PRODUCTS = {
   "briq-10kg": {
     "id": "briq-10kg",
     "name": "Briquette de bois - 15kg",
-    "price": 7.0,
+    "price": 6.6,
     "image": "images/briquettes-bois.jpg",
     "cat": "logs",
     "title": "prod.briq10.title",
