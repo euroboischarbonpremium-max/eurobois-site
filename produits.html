@@ -129,44 +129,6 @@
 
     <div class="max-w-7xl mx-auto px-4 py-10">
         <div class="flex flex-col lg:flex-row gap-8">
-            <aside class="lg:w-64 flex-shrink-0">
-                <div class="bg-white rounded-xl shadow-md p-5 sticky top-24">
-                    <h3 class="font-bold text-lg mb-4" data-i18n="products.filterBy">Filtrer par</h3>
-                    <div class="mb-5">
-                        <h4 class="font-semibold text-sm mb-2" data-i18n="products.price">Prix</h4>
-                        <input type="range" min="0" max="400" value="400" class="w-full accent-orange-500">
-                        <div class="flex justify-between text-xs text-gray-500 mt-1"><span>0 €</span><span>400 €</span></div>
-                    </div>
-                    <div class="mb-5">
-                        <h4 class="font-semibold text-sm mb-2" data-i18n="products.woodType">Type de bois</h4>
-                        <div class="space-y-2 text-sm">
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500" checked> <span data-i18n="products.oak">Chêne</span></label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> <span data-i18n="products.beech">Hêtre</span></label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> <span data-i18n="products.hornbeam">Charme</span></label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> <span data-i18n="products.ash">Frêne</span></label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> <span data-i18n="products.mixed">Mixte</span></label>
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <h4 class="font-semibold text-sm mb-2" data-i18n="products.logLength">Longueur des bûches</h4>
-                        <div class="space-y-2 text-sm">
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> 25 cm</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> 33 cm</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> 40 cm</label>
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <h4 class="font-semibold text-sm mb-2" data-i18n="products.volume">Volume</h4>
-                        <div class="space-y-2 text-sm">
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> 1 m³</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> 2 m³</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-orange-500"> 3 m³</label>
-                        </div>
-                    </div>
-                    <button class="w-full bg-orange-btn text-white py-2.5 rounded-lg text-sm font-medium hover:bg-accent-hover transition" data-i18n="products.resetFilters">Réinitialiser les filtres</button>
-                </div>
-            </aside>
-
             <div class="flex-1">
                 <div class="flex justify-between items-center mb-6">
                     <p class="text-sm text-gray-600"><span id="product-count">16</span> <span data-i18n="products.found">produits trouvés</span></p>
@@ -306,58 +268,58 @@
 <div data-cat="logs" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
                         <div class="relative">
                             <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded" data-i18n="products.bestseller">Meilleure vente</span>
-                            <a href="produit.html?id=briq-10kg" class="block"><img src="briquettes-bois.jpg" alt="Briquettes de bois - 10 kg" class="w-full h-48 object-cover"></a>
+                            <a href="produit.html?id=briq-10kg" class="block"><img src="briquettes-bois.jpg" alt="Briquette de bois - 15kg" class="w-full h-48 object-cover"></a>
                         </div>
                         <div class="p-4">
-                            <h3 class="font-semibold mb-1"><a href="produit.html?id=briq-10kg" class="hover:text-accent transition" data-i18n="prod.briq10.title">Briquettes de bois - 10 kg</a></h3>
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=briq-10kg" class="hover:text-accent transition" data-i18n="prod.briq10.title">Briquette de bois - 15kg</a></h3>
                             <p class="text-xs text-gray-500 mb-2" data-i18n="prod.briq10.desc">1 pack – 100% bois naturel</p>
                             <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(28)</span></div>
                             <div class="text-xl font-bold text-primary mb-3">7,00 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
-                            <button onclick="addToCart('briq-10kg', 'Briquettes de bois - 10 kg', 7.0, 'briquettes-bois.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <button onclick="addToCart('briq-10kg', 'Briquette de bois - 15kg', 7.0, 'briquettes-bois.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
                             <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
                         </div>
                     </div>
 <div data-cat="logs" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
-                        <a href="produit.html?id=briq-240kg" class="block"><img src="briquettes-bois.jpg" alt="Briquettes de bois - ¼ palette 240 kg" class="w-full h-48 object-cover"></a>
+                        <a href="produit.html?id=briq-240kg" class="block"><img src="briquettes-bois.jpg" alt="Briquette de bois - ¼ de palettes 360kg" class="w-full h-48 object-cover"></a>
                         <div class="p-4">
-                            <h3 class="font-semibold mb-1"><a href="produit.html?id=briq-240kg" class="hover:text-accent transition" data-i18n="prod.briq240.title">Briquettes de bois - ¼ palette 240 kg</a></h3>
-                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.briq240.desc">24 packs de 10 kg</p>
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=briq-240kg" class="hover:text-accent transition" data-i18n="prod.briq240.title">Briquette de bois - ¼ de palettes 360kg</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.briq240.desc">24 paquets de 15kg</p>
                             <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(45)</span></div>
                             <div class="text-xl font-bold text-primary mb-3">149,00 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
-                            <button onclick="addToCart('briq-240kg', 'Briquettes de bois - ¼ palette 240 kg', 149.0, 'briquettes-bois.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <button onclick="addToCart('briq-240kg', 'Briquette de bois - ¼ de palettes 360kg', 149.0, 'briquettes-bois.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
                             <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
                         </div>
                     </div>
 <div data-cat="logs" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
-                        <a href="produit.html?id=briq-480kg" class="block"><img src="briquettes-bois.jpg" alt="Briquettes de bois - ½ palette 480 kg" class="w-full h-48 object-cover"></a>
+                        <a href="produit.html?id=briq-480kg" class="block"><img src="briquettes-bois.jpg" alt="Briquette de bois ½ palette de 720kg" class="w-full h-48 object-cover"></a>
                         <div class="p-4">
-                            <h3 class="font-semibold mb-1"><a href="produit.html?id=briq-480kg" class="hover:text-accent transition" data-i18n="prod.briq480.title">Briquettes de bois - ½ palette 480 kg</a></h3>
-                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.briq480.desc">48 packs de 10 kg</p>
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=briq-480kg" class="hover:text-accent transition" data-i18n="prod.briq480.title">Briquette de bois ½ palette de 720kg</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.briq480.desc">48 paquets de 15kg</p>
                             <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(52)</span></div>
                             <div class="text-xl font-bold text-primary mb-3">289,89 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
-                            <button onclick="addToCart('briq-480kg', 'Briquettes de bois - ½ palette 480 kg', 289.89, 'briquettes-bois.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <button onclick="addToCart('briq-480kg', 'Briquette de bois ½ palette de 720kg', 289.89, 'briquettes-bois.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
                             <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
                         </div>
                     </div>
 <div data-cat="logs" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
-                        <a href="produit.html?id=briq-720kg" class="block"><img src="briquettes-bois.jpg" alt="Briquettes de bois - ¾ palette 720 kg" class="w-full h-48 object-cover"></a>
+                        <a href="produit.html?id=briq-720kg" class="block"><img src="briquettes-bois.jpg" alt="Briquette de bois ¾ de palettes 1080kg" class="w-full h-48 object-cover"></a>
                         <div class="p-4">
-                            <h3 class="font-semibold mb-1"><a href="produit.html?id=briq-720kg" class="hover:text-accent transition" data-i18n="prod.briq720.title">Briquettes de bois - ¾ palette 720 kg</a></h3>
-                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.briq720.desc">72 packs de 10 kg</p>
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=briq-720kg" class="hover:text-accent transition" data-i18n="prod.briq720.title">Briquette de bois ¾ de palettes 1080kg</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.briq720.desc">72 colis de 15kg</p>
                             <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(31)</span></div>
                             <div class="text-xl font-bold text-primary mb-3">439,00 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
-                            <button onclick="addToCart('briq-720kg', 'Briquettes de bois - ¾ palette 720 kg', 439.0, 'briquettes-bois.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <button onclick="addToCart('briq-720kg', 'Briquette de bois ¾ de palettes 1080kg', 439.0, 'briquettes-bois.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
                             <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
                         </div>
                     </div>
 <div data-cat="logs" class="product-card bg-white rounded-xl shadow-md overflow-hidden border">
-                        <a href="produit.html?id=briq-960kg" class="block"><img src="briquettes-bois.jpg" alt="Briquettes de bois - palette 960 kg" class="w-full h-48 object-cover"></a>
+                        <a href="produit.html?id=briq-960kg" class="block"><img src="briquettes-bois.jpg" alt="Briquette de bois palette de 1440 kg" class="w-full h-48 object-cover"></a>
                         <div class="p-4">
-                            <h3 class="font-semibold mb-1"><a href="produit.html?id=briq-960kg" class="hover:text-accent transition" data-i18n="prod.briq960.title">Briquettes de bois - palette 960 kg</a></h3>
-                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.briq960.desc">96 packs de 10 kg – palette complète</p>
+                            <h3 class="font-semibold mb-1"><a href="produit.html?id=briq-960kg" class="hover:text-accent transition" data-i18n="prod.briq960.title">Briquette de bois palette de 1440 kg</a></h3>
+                            <p class="text-xs text-gray-500 mb-2" data-i18n="prod.briq960.desc">96 colis de 15kg</p>
                             <div class="text-yellow-400 text-sm mb-1">★★★★★ <span class="text-gray-500 text-xs">(67)</span></div>
                             <div class="text-xl font-bold text-primary mb-3">519,00 € <span class="text-xs font-normal text-gray-500" data-i18n="products.ttc">TTC</span></div>
-                            <button onclick="addToCart('briq-960kg', 'Briquettes de bois - palette 960 kg', 519.0, 'briquettes-bois.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
+                            <button onclick="addToCart('briq-960kg', 'Briquette de bois palette de 1440 kg', 519.0, 'briquettes-bois.jpg')" class="w-full bg-orange-btn hover:bg-accent-hover text-white font-medium py-2.5 rounded-lg text-sm"><i class="fas fa-cart-plus mr-1"></i> <span data-i18n="products.addToCart">Ajouter au panier</span></button>
                             <p class="text-xs text-green-600 mt-2"><i class="fas fa-check-circle"></i> <span data-i18n="products.inStock">En stock · Livraison sous 2 à 4 jours</span></p>
                         </div>
                     </div>
