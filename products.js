@@ -112,47 +112,17 @@ const PRODUCTS = {
   "briq-10kg": {
     "id": "briq-10kg",
     "name": "Briquette de bois - 15kg",
-    "price": 6.6,
+    "price": 5.70,
     "image": "images/briquettes-bois.jpg",
     "cat": "logs",
     "title": "prod.briq10.title",
     "desc": "prod.briq10.desc",
     "reviews": 28
   },
-  "briq-240kg": {
-    "id": "briq-240kg",
-    "name": "Briquette de bois - ¼ de palettes 360kg",
-    "price": 149.0,
-    "image": "images/briquettes-bois.jpg",
-    "cat": "logs",
-    "title": "prod.briq240.title",
-    "desc": "prod.briq240.desc",
-    "reviews": 45
-  },
-  "briq-480kg": {
-    "id": "briq-480kg",
-    "name": "Briquette de bois ½ palette de 720kg",
-    "price": 289.89,
-    "image": "images/briquettes-bois.jpg",
-    "cat": "logs",
-    "title": "prod.briq480.title",
-    "desc": "prod.briq480.desc",
-    "reviews": 52
-  },
-  "briq-720kg": {
-    "id": "briq-720kg",
-    "name": "Briquette de bois ¾ de palettes 1080kg",
-    "price": 439.0,
-    "image": "images/briquettes-bois.jpg",
-    "cat": "logs",
-    "title": "prod.briq720.title",
-    "desc": "prod.briq720.desc",
-    "reviews": 31
-  },
   "briq-960kg": {
     "id": "briq-960kg",
-    "name": "Briquette de bois palette de 1440 kg",
-    "price": 519.0,
+    "name": "Briquette de bois - palettes de 990kg",
+    "price": 396.0,
     "image": "images/briquettes-bois.jpg",
     "cat": "logs",
     "title": "prod.briq960.title",
