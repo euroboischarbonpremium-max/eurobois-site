@@ -97,7 +97,7 @@ function placeOrder() {
     var num = "EB" + new Date().getFullYear() + String(Math.floor(10000 + Math.random() * 90000));
     var name = val("f-first") + " " + val("f-last");
     var email = val("f-email");
-    var address = val("f-address") + ", " + val("f-postal") + " " + val("f-city") + ", " + country;
+    var address = val("f-address") + ", " + val("f-postal") + " " + val("f-city") + (country ? ", " + country : "");
     var shippingMode = chosen("shipping");
 
     var btn = document.getElementById("place-order-btn");
