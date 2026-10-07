@@ -162,9 +162,9 @@
                             class="flex-1 bg-orange-btn hover:bg-accent-hover text-white font-semibold py-3.5 rounded-lg transition flex items-center justify-center gap-2">
                         <i class="fas fa-cart-plus"></i> <span data-i18n="products.addToCart">Ajouter au panier</span>
                     </button>
-                    <a href="panier.html" class="flex-1 bg-primary hover:bg-primary-dark text-white font-semibold py-3.5 rounded-lg transition flex items-center justify-center gap-2">
+                    <button onclick="buyCurrent()" class="flex-1 bg-primary hover:bg-primary-dark text-white font-semibold py-3.5 rounded-lg transition flex items-center justify-center gap-2">
                         <span data-i18n="product.buyNow">Acheter maintenant</span>
-                    </a>
+                    </button>
                 </div>
 
                 <div class="border-t pt-4 text-sm text-gray-600 space-y-2">
@@ -225,6 +225,10 @@
         function addCurrentToCart() {
             var p = currentProduct;
             addToCart(p.id, p.name, p.price, p.image, parseInt(document.getElementById('product-qty').textContent));
+        }
+        function buyCurrent() {
+            var p = currentProduct;
+            buyNow(p.id, p.name, p.price, p.image, parseInt(document.getElementById('product-qty').textContent));
         }
         function changeQty(delta) {
             const el = document.getElementById('product-qty');

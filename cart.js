@@ -134,3 +134,22 @@ function getCartTotal() {
 
 // Init on page load
 document.addEventListener('DOMContentLoaded', updateCartCount);
+
+// "Acheter maintenant" : ajoute le produit puis va directement à la commande
+function buyNow(id, name, price, image, qty = 1) {
+    const btn = event?.target?.closest('button');
+    if (btn) {
+        const card = btn.closest('.product-card') || btn.closest('.p-4');
+        const qtyEl = card?.querySelector('.qty-value');
+        if (qtyEl) qty = parseInt(qtyEl.textContent) || 1;
+    }
+    let cart = getCart();
+    const existing = cart.find(item => item.id === id);
+    if (existing) {
+        existing.qty += qty;
+    } else {
+        cart.push({ id, name, price, image, qty });
+    }
+    saveCart(cart);
+    window.location.href = 'commande.html';
+}
