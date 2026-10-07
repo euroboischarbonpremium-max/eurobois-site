@@ -62,8 +62,22 @@
         </div>
         <h1 class="text-3xl font-bold text-primary mb-3" data-i18n="confirm.title">Thank you for your order!</h1>
         <p class="text-gray-600 mb-2"><span data-i18n="confirm.thanks">Your order number is:</span> <strong id="order-number">#EB202500123</strong></p>
-        <p class="text-gray-600 text-sm mb-2" data-i18n="confirm.bankInfo">We have received your order. We will send you our bank details by email shortly so you can complete the payment by transfer.</p>
+        <p class="text-gray-600 text-sm mb-2" data-i18n="confirm.bankInfo">We have received your order. Please transfer the amount using the bank details below. Your order will be prepared as soon as we receive your payment.</p>
         <p class="text-gray-500 text-sm mb-8"><span data-i18n="confirm.emailSent">A confirmation has been sent</span> <span id="order-email"></span></p>
+
+
+        <div class="bg-white rounded-xl shadow-md p-6 text-left mb-8 border-2 border-accent">
+            <h2 class="font-bold mb-4" data-i18n="confirm.bankTitle">Bank details for your transfer</h2>
+            <div class="space-y-3 text-sm">
+                <div class="flex justify-between items-center gap-3"><span class="text-gray-500" data-i18n="confirm.beneficiary">Beneficiary</span><strong id="bank-name"></strong></div>
+                <div class="flex justify-between items-center gap-3"><span class="text-gray-500" data-i18n="confirm.iban">IBAN</span><span class="flex items-center gap-2"><strong id="bank-iban" class="break-all text-right"></strong><button type="button" onclick="copyBank('bank-iban', this)" class="text-xs border border-primary text-primary rounded px-2 py-1" data-i18n="confirm.copy">Copy</button></span></div>
+                <div class="flex justify-between items-center gap-3"><span class="text-gray-500" data-i18n="confirm.bic">BIC</span><strong id="bank-bic"></strong></div>
+                <div class="flex justify-between items-center gap-3"><span class="text-gray-500" data-i18n="confirm.bankName">Bank</span><strong id="bank-bank"></strong></div>
+                <div class="flex justify-between items-center gap-3"><span class="text-gray-500" data-i18n="confirm.reference">Payment reference</span><span class="flex items-center gap-2"><strong id="bank-ref" class="text-accent"></strong><button type="button" onclick="copyBank('bank-ref', this)" class="text-xs border border-primary text-primary rounded px-2 py-1" data-i18n="confirm.copy">Copy</button></span></div>
+                <div class="flex justify-between items-center gap-3 border-t pt-3"><span class="text-gray-500" data-i18n="confirm.amount">Amount to pay</span><strong id="bank-amount" class="text-primary text-base"></strong></div>
+            </div>
+            <p class="text-xs text-gray-500 mt-4" data-i18n="confirm.bankNote">Please include the order number as the payment reference so we can match your payment.</p>
+        </div>
 
         <div class="bg-white rounded-xl shadow-md p-6 text-left mb-8">
             <h2 class="font-bold mb-4" data-i18n="confirm.details">Détails de la commande</h2>
@@ -115,6 +129,35 @@
             // Clear cart after order
             localStorage.removeItem('eurobois_cart');
         });
+
+
+        // ===== COORDONNÉES BANCAIRES (à modifier ici uniquement) =====
+        var BANK = {
+            name: "Domythlla Batista Gomes",
+            iban: "LT27 3250 0753 3574 6819",
+            bic: "REVOLT21",
+            bank: "Revolut Bank"
+        };
+        function copyBank(id, btn) {
+            var txt = document.getElementById(id).textContent;
+            var done = function () {
+                var old = btn.innerHTML;
+                btn.textContent = (typeof t === 'function' && t('confirm.copied') !== 'confirm.copied') ? t('confirm.copied') : 'Copied ✓';
+                setTimeout(function () { btn.innerHTML = old; }, 1500);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(txt).then(done); }
+            else { var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(ta); done(); }
+        }
+        (function () {
+            var o = {};
+            try { o = JSON.parse(localStorage.getItem('eurobois_order') || '{}'); } catch (e) {}
+            document.getElementById('bank-name').textContent = BANK.name;
+            document.getElementById('bank-iban').textContent = BANK.iban;
+            document.getElementById('bank-bic').textContent = BANK.bic;
+            document.getElementById('bank-bank').textContent = BANK.bank;
+            document.getElementById('bank-ref').textContent = o.number || '';
+            document.getElementById('bank-amount').textContent = (typeof o.total === 'number') ? o.total.toFixed(2).replace('.', ',') + ' €' : '';
+        })();
 
         (function () {
             var o = {};

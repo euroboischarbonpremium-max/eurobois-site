@@ -65,7 +65,7 @@ function sendContact() {
         });
 }
 
-// ---- Manual order (email only – no online payment)
+// ---- Order paid by bank transfer (details shown on confirmation page)
 function placeOrder() {
     var ids = ["f-last", "f-first", "f-email", "f-phone", "f-address", "f-postal", "f-city"];
     var ok = true;
@@ -105,19 +105,19 @@ function placeOrder() {
     btn.disabled = true; btn.style.opacity = "0.6";
     btn.textContent = tr("checkout.sending", "Sending your order…");
 
-    localStorage.setItem("eurobois_order", JSON.stringify({ number: num, email: email, name: name }));
+    localStorage.setItem("eurobois_order", JSON.stringify({ number: num, email: email, name: name, total: total }));
 
-    sendToOwner("New order " + num + " - " + name + " (awaiting bank details)", {
+    sendToOwner("New order " + num + " - " + name + " (awaiting bank transfer)", {
         Order_number: num,
         Customer: name,
         Phone: val("f-phone"),
         Email: email,
         Address: address,
         Shipping_method: shippingMode,
-        Payment_method: "Bank transfer (manual – send IBAN by reply email)",
+        Payment_method: "Bank transfer (bank details shown on the confirmation page)",
         Products: "\n" + lines,
         Total: fmt(total) + " (free shipping)",
-        Status: "Awaiting your bank details email to the customer"
+        Status: "Awaiting transfer - check your bank account for reference " + num + ", then deliver"
     }, email, name)
     .then(function () {
         window.location.href = "confirmation.html";
