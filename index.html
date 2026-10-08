@@ -35,6 +35,17 @@
         .product-card:hover { transform: translateY(-4px); transition: all 0.3s ease; }
         .category-icon { transition: all 0.3s ease; }
         .category-icon:hover { transform: scale(1.08); }
+    
+        /* Cartes produits plus compactes sur téléphone */
+        @media (max-width: 639px) {
+            .product-card img { height: 9rem; object-fit: contain; background: #fff; }
+            .product-card .p-4 { padding: 0.6rem; }
+            .product-card h3 { font-size: 0.8rem; line-height: 1.1rem; }
+            .product-card .text-xl { font-size: 1rem; }
+            .product-card .text-lg { font-size: 0.95rem; }
+            .product-card p.text-xs { font-size: 0.68rem; line-height: 0.95rem; }
+            .product-card button.w-full { font-size: 0.7rem; padding-top: 0.45rem; padding-bottom: 0.45rem; }
+        }
     </style>
     <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8fbdf7822dce4187bf2d8ac9fdb77b05"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
@@ -158,7 +169,7 @@
                 <a href="produits.html" class="text-accent font-medium hover:underline"><span data-i18n="products.seeAll">Voir tous les produits</span> →</a>
             </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
 <div data-cat="firewood" class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
                     <div class="relative">
                         <a href="produit.html?id=bois-chene-1m3" class="block"><img src="bois-chene-1m3.jpg" alt="Bois de chêne sec 1 m³" class="w-full h-48 object-cover"></a>
